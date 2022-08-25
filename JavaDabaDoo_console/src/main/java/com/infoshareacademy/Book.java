@@ -14,6 +14,18 @@ public class Book {
     private List<Integer> scores = new ArrayList<>();
     private LocalDateTime dateOfAdd = LocalDateTime.now();
 
+    public Book() {
+    }
+
+    public Book(long id, String isbn, String title, String author, String language, String category) {
+        this.id = id;
+        this.isbn = isbn;
+        this.title = title;
+        this.author = author;
+        this.language = language;
+        this.category = category;
+    }
+
     public long getId() {
         return id;
     }
