@@ -11,8 +11,8 @@ public class Book {
     private String author;
     private String language;
     private String category;
-    private List<Integer> scores = new ArrayList<>();
-    private LocalDateTime dateOfAdd = LocalDateTime.now();
+    private List<Integer> scores;
+    private LocalDateTime dateOfAdd;
 
     public Book() {
     }
@@ -24,6 +24,8 @@ public class Book {
         this.author = author;
         this.language = language;
         this.category = category;
+        this.dateOfAdd = LocalDateTime.now();
+        this.scores = new ArrayList<>();
     }
 
     public long getId() {
