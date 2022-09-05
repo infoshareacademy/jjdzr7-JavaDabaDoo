@@ -10,7 +10,6 @@ public class Library {
         Option option;
 
 
-
         do {
             printOptions();
             option = getOption();
@@ -54,6 +53,7 @@ public class Library {
             System.out.println(option.toString());
         }
     }
+
     private Option getOption() {
         boolean optionOk = false;
         Option option = null;
@@ -63,13 +63,14 @@ public class Library {
                 optionOk = true;
             } catch (InputMismatchException e) {
                 System.out.println("Wrong input, try again with the option's number:");
-            }catch (ArrayIndexOutOfBoundsException ex){
+            } catch (ArrayIndexOutOfBoundsException ex) {
                 System.out.println("Number do not match the following options, try again.");
             }
         }
 
         return option;
     }
+
     public int getInt() {
         try {
             return sc.nextInt();
@@ -80,12 +81,13 @@ public class Library {
 
     private void exit() {
 
-            //saving to file function
-            System.out.println("Data has been successfully exported");
+        //saving to file function
+        System.out.println("Data has been successfully exported");
 
         sc.close();
         System.out.println("Program end, ciao!");
     }
+
     private enum Option {
         EXIT(0, "Exit"),
         SEARCH_BOOK(1, "Search book"),
