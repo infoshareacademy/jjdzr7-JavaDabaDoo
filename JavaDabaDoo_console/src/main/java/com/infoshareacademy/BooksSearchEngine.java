@@ -8,8 +8,11 @@ public class BooksSearchEngine {
 
     static Scanner input = new Scanner(System.in);
 
+    private BooksSearchEngine() {
+    }
+
     private static void printPositions(List<Book> results) {
-        if (results.size() == 0) {
+        if (results.isEmpty()) {
             System.out.println("\nNo positions found!\n");
             return;
         }
@@ -44,8 +47,10 @@ public class BooksSearchEngine {
         } while (!(choice.equals("no") || choice.equals("yes")));
         if (choice.equals("yes")) {
             return true;
+        } else {
+            return false;
         }
-        return false;
+
     }
 
     private static List<Book> searchBy(List<Book> listOfBooks, TypeOfSearch type, String searchedString) {
@@ -104,8 +109,7 @@ public class BooksSearchEngine {
             }
             choice = (Integer.valueOf(input.nextLine()));
         } while (!(choice >= 0 && choice <= 5));
-        TypeOfSearch result = TypeOfSearch.values()[choice];
-        return result;
+        return TypeOfSearch.values()[choice];
     }
 
     public static void menu(List<Book> listOfBooks) {
@@ -118,7 +122,6 @@ public class BooksSearchEngine {
             String searchString = input.nextLine();
             printPositions(searchBy(listOfBooks, choice, searchString));
         }
-        ;
     }
 
 }
