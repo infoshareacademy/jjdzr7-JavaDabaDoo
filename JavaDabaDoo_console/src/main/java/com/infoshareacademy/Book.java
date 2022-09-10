@@ -28,6 +28,17 @@ public class Book {
         this.scores = new ArrayList<>();
     }
 
+    public Book(long id, String isbn, String title, String author, String language, String category, List<Integer> scores, LocalDateTime dateOfAdd) {
+        this.id = id;
+        this.isbn = isbn;
+        this.title = title;
+        this.author = author;
+        this.language = language;
+        this.category = category;
+        this.scores = scores;
+        this.dateOfAdd = dateOfAdd;
+    }
+
     public long getId() {
         return id;
     }
@@ -90,5 +101,19 @@ public class Book {
 
     public void setDateOfAdd(LocalDateTime dateOfAdd) {
         this.dateOfAdd = dateOfAdd;
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id=" + id +
+                ", isbn='" + isbn + '\'' +
+                ", title='" + title + '\'' +
+                ", author='" + author + '\'' +
+                ", language='" + language + '\'' +
+                ", category='" + category + '\'' +
+                ", scores=" + scores +
+                ", dateOfAdd=" + dateOfAdd +
+                '}';
     }
 }
