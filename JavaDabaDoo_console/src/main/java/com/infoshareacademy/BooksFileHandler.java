@@ -9,7 +9,7 @@ import java.util.ListIterator;
 import java.util.Scanner;
 
 public class BooksFileHandler {
-    static final String BOOKS_IN_LIBRARY = "listBooks.txt";
+    private String BOOKS_IN_LIBRARY = "listBooks.txt";
 
     public List<Book> read() {
         List<Book> bookList = new ArrayList<>();
@@ -42,8 +42,13 @@ public class BooksFileHandler {
 
                 LocalDateTime dateOfAdd = LocalDateTime.parse(split[7]);
                 bookList.add(new Book(id, isbn, title, author, language, category, scores, dateOfAdd));
-
+//          else (EOF <- end of file) adding new book to list (file ?)
             }
+//          adding new file to listBooks.txt
+//            while (!(scanner.hasNextLine())){
+//                String newBook = new Scanner();
+//                newBook = scanner.nextLine();
+//            }
         }
     return bookList;
     }
