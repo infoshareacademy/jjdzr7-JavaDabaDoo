@@ -1,7 +1,5 @@
 package com.infoshareacademy;
 
-
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,5 +56,20 @@ public class User {
 
     public void setHistory(List<Book> history) {
         this.history = history;
+    }
+
+    public Book borrowBook(Book book) {
+        borrowlist.add(book);
+        return book;
+    }
+
+    public Book returnBook(Book book) {
+        if (borrowlist.contains(book)) {
+            borrowlist.remove(book);
+            history.add(book);
+        } else {
+            System.out.println("Brak ksiazki");
+        }
+        return book;
     }
 }
