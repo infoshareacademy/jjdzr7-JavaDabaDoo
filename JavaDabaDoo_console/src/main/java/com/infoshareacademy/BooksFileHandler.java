@@ -5,11 +5,10 @@ import java.io.FileNotFoundException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ListIterator;
 import java.util.Scanner;
 
 public class BooksFileHandler {
-    private String BOOKS_IN_LIBRARY = "listBooks.txt";
+    public final String BOOKS_IN_LIBRARY = "listBooks.txt";
 
     public List<Book> read() {
         List<Book> bookList = new ArrayList<>();
@@ -42,14 +41,30 @@ public class BooksFileHandler {
 
                 LocalDateTime dateOfAdd = LocalDateTime.parse(split[7]);
                 bookList.add(new Book(id, isbn, title, author, language, category, scores, dateOfAdd));
-//          else (EOF <- end of file) adding new book to list (file ?)
+
             }
-//          adding new file to listBooks.txt
-//            while (!(scanner.hasNextLine())){
-//                String newBook = new Scanner();
-//                newBook = scanner.nextLine();
-//            }
         }
-    return bookList;
+        return bookList;
     }
+
+    public void save(List<Book> books) {
+
+        List<Book> saveList = new ArrayList<>();
+        for (Book element : books) {
+            element.toCustomString();
+
+        }
+
+
+
+
+        // przeiterować listę books i każdy element zamienić na stringa za pomocą metody toCustomString
+        // i wynik tej pętli zapisać do listy Stringów
+        // listę stringów przeiterować i każdy element zapisać jako linię do pliku
+
+    }
+
+
 }
+
+
