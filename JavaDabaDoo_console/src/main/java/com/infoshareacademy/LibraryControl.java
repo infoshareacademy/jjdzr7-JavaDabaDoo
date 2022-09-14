@@ -1,8 +1,8 @@
 package com.infoshareacademy;
 
-import java.util.ArrayList;
+
 import java.util.InputMismatchException;
-import java.util.List;
+
 import java.util.Scanner;
 
 public class LibraryControl {
@@ -66,6 +66,7 @@ public class LibraryControl {
     }
 
     private void printBorrowed() {
+        Boolean returnBook = false;
         if (user.getBorrowlist().isEmpty()) {
             System.out.println("There are no borrowed books.");
         } else {
@@ -73,7 +74,18 @@ public class LibraryControl {
             for (Book book : user.getBorrowlist()) {
                 System.out.println(book);
             }
+            returnBook = booksSearchEngine.askQuestion("Would you like to return book?");
         }
+        int id = 0;
+        if (returnBook) {
+            System.out.println("Type id of book");
+            id = sc.nextInt();
+            sc.nextLine();
+            Book bookById = booksSearchEngine.findBorrowedBookById(id);
+            user.returnBook(bookById);
+            library.booksList.add(bookById);
+        }
+
     }
     private void printBorrowHistory() {
         if (user.getHistory().isEmpty()) {

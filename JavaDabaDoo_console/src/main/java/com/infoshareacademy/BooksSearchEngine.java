@@ -43,8 +43,16 @@ public class BooksSearchEngine {
         return bookById;
     }
 
-    private Book findBookById(int id) {
+    public Book findBookById(int id) {
         for (Book book : library.booksList) {
+            if (book.getId() == id){
+                return book;
+            }
+        }
+        return null;
+    }
+    public Book findBorrowedBookById(int id) {
+        for (Book book : user.getBorrowlist()) {
             if (book.getId() == id){
                 return book;
             }
@@ -53,7 +61,7 @@ public class BooksSearchEngine {
     }
 
 
-    private boolean askQuestion(String question) {
+    public boolean askQuestion(String question) {
         String choice = null;
         do {
             if (choice != null) {
