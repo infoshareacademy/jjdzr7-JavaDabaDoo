@@ -47,13 +47,13 @@ public class BooksFileHandler {
         return bookList;
     }
 
-    public void save(List<Book> books) {
-
-        List<Book> saveList = new ArrayList<>();
-        for (Book element : books) {
-            element.toCustomString();
-
-        }
+//    public void save(List<Book> books) {
+//
+//        List<Book> saveList = new ArrayList<>();
+//        for (Book element : books) {
+//            element.toCustomString();
+//
+//        }
 
 
 
@@ -62,7 +62,7 @@ public class BooksFileHandler {
         // i wynik tej pętli zapisać do listy Stringów
         // listę stringów przeiterować i każdy element zapisać jako linię do pliku
 
-    }
+//    }
 
 
 }

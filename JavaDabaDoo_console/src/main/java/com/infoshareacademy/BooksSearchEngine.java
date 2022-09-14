@@ -8,7 +8,7 @@ public class BooksSearchEngine {
 
     static Scanner input = new Scanner(System.in);
 
-    private BooksSearchEngine() {
+    public BooksSearchEngine() {
     }
 
     private static void printPositions(List<Book> results) {
