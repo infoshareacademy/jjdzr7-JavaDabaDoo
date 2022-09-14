@@ -5,13 +5,17 @@ import java.util.List;
 import java.util.Scanner;
 
 public class BooksSearchEngine {
+   private Library library;
+   private User user;
 
     static Scanner input = new Scanner(System.in);
 
-    public BooksSearchEngine() {
+    public BooksSearchEngine(Library library, User user) {
+        this.library = library;
+        this.user = user;
     }
 
-    private static void printPositions(List<Book> results) {
+    public void printPositions(List<Book> results) {
         if (results.isEmpty()) {
             System.out.println("\nNo positions found!\n");
             return;
@@ -20,23 +24,36 @@ public class BooksSearchEngine {
             System.out.println(result.toString());
         }
 
-        borrowBook();
+       borrowBook();
+
     }
 
-    private static void borrowBook() {
+    public Book borrowBook() {
         boolean choice = askQuestion("Do you want borrow book?(yes/no)");
-
+        int id = -1;
         if (choice) {
             System.out.println("Type id of book");
-            int id = input.nextInt();
-
-            //invoke helper with boroww book
+             id = input.nextInt();
+            input.nextLine();
 
         }
-
+        Book bookById = findBookById(id);
+        user.borrowBook(bookById);
+        library.booksList.remove(bookById);
+        return bookById;
     }
 
-    private static boolean askQuestion(String question) {
+    private Book findBookById(int id) {
+        for (Book book : library.booksList) {
+            if (book.getId() == id){
+                return book;
+            }
+        }
+        return null;
+    }
+
+
+    private boolean askQuestion(String question) {
         String choice = null;
         do {
             if (choice != null) {
@@ -53,7 +70,7 @@ public class BooksSearchEngine {
 
     }
 
-    private static List<Book> searchBy(List<Book> listOfBooks, TypeOfSearch type, String searchedString) {
+    private List<Book> searchBy(List<Book> listOfBooks, TypeOfSearch type, String searchedString) {
 
         List<Book> results = new ArrayList<>();
         for (Book book : listOfBooks) {
@@ -94,14 +111,14 @@ public class BooksSearchEngine {
         return results;
     }
 
-    private static void printSearchMenu() {
+    private void printSearchMenu() {
         System.out.println("Search by:");
         for (TypeOfSearch type : TypeOfSearch.values()) {
             System.out.println(type.toString());
         }
     }
 
-    private static TypeOfSearch getChoice() {
+    private TypeOfSearch getChoice() {
         Integer choice = null;
         do {
             if (choice != null) {
@@ -112,7 +129,7 @@ public class BooksSearchEngine {
         return TypeOfSearch.values()[choice];
     }
 
-    public static void menu(List<Book> listOfBooks) {
+    public void menu(List<Book> listOfBooks) {
         while (true) {
             printSearchMenu();
             TypeOfSearch choice = getChoice();
@@ -121,6 +138,7 @@ public class BooksSearchEngine {
             }
             String searchString = input.nextLine();
             printPositions(searchBy(listOfBooks, choice, searchString));
+
         }
     }
 

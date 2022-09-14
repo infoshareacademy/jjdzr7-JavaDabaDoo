@@ -1,13 +1,29 @@
 package com.infoshareacademy;
 
+import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 public class LibraryControl {
-    BooksSearchEngine bse = new BooksSearchEngine();
+    Library library;
+    BooksSearchEngine booksSearchEngine;
+    BooksFileHandler booksFileHandler;
+    User user;
+
     private Scanner sc = new Scanner(System.in);
 
+
+    public LibraryControl(Library library, BooksSearchEngine booksSearchEngine, BooksFileHandler booksFileHandler,
+                          User user) {
+        this.library = library;
+        this.booksSearchEngine = booksSearchEngine;
+        this.booksFileHandler = booksFileHandler;
+        this.user = user;
+    }
+
     void controlLoop() {
+        library.booksList = booksFileHandler.read();
         Option option;
 
 
@@ -16,25 +32,26 @@ public class LibraryControl {
             option = getOption();
             switch (option) {
                 case SEARCH_BOOK:
-//                    bse.menu(booksList);
+                    booksSearchEngine.menu(library.booksList);
                     break;
                 case ADD_BOOK:
                     //function
                     break;
                 case PRINT_BOOKS:
-                    //function
+                    booksSearchEngine.printPositions(library.booksList);
                     break;
                 case DETAILS_BOOK:
                     //function
                     break;
                 case BORROW_BOOK:
-                    //function
+                    booksSearchEngine.borrowBook();
+
                     break;
                 case PRINT_BORROWED:
-                    //function
+                    printBorrowed();
                     break;
                 case PRINT_HISTORY:
-                    //function
+                    printBorrowHistory();
                     break;
                 case PRINT_NEW_BOOKS:
                     //function
@@ -46,6 +63,27 @@ public class LibraryControl {
                     System.out.println("Wrong option, please try again: ");
             }
         } while (option != Option.EXIT);
+    }
+
+    private void printBorrowed() {
+        if (user.getBorrowlist().isEmpty()) {
+            System.out.println("There are no borrowed books.");
+        } else {
+            System.out.println("Borrowed books:");
+            for (Book book : user.getBorrowlist()) {
+                System.out.println(book);
+            }
+        }
+    }
+    private void printBorrowHistory() {
+        if (user.getHistory().isEmpty()) {
+            System.out.println("There is no history of borrowed books.");
+        } else {
+            System.out.println("History of borrowed books:");
+            for (Book book : user.getHistory()) {
+                System.out.println(book);
+            }
+        }
     }
 
     private void printOptions() {

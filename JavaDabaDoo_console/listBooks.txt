@@ -2,4 +2,4 @@
 2;327-22-02-32894-2;Fundacja;Isaac Asimov;English;sci-fi;1,2,3,4,5;2018-07-14T17:45:55.9483536;
 3;584-18-12-00154-7;Ja, robot;Isaac Asimov;English;sci-fi;1,2,3,4,5;2018-07-14T17:45:55.9483536;
 4;877-74-89-55555-2;Anioły i demony;Dan Brown;English;mystery-thriller;1,2,3,4,5;2018-07-14T17:45:55.9483536;
-5;892-65-56-15440-5;Gwiazda Pandory: Ekspedycja;Peter F. Hamilton;space opera;1,2,3,4,5;2018-07-14T17:45:55.9483536;
+5;892-65-56-15440-5;Gwiazda Pandory: Ekspedycja;Peter F. Hamilton;English;space opera;1,2,3,4,5;2018-07-14T17:45:55.9483536;
