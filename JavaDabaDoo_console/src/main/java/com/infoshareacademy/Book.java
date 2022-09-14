@@ -91,4 +91,31 @@ public class Book {
     public void setDateOfAdd(LocalDateTime dateOfAdd) {
         this.dateOfAdd = dateOfAdd;
     }
+
+
+    @Override
+    public String toString() {
+        return "id='" + id + '\'' +
+                "isbn='" + isbn + '\'' +
+                " title='" + title + '\'' +
+                " author='" + author + '\'' +
+                " language='" + language + '\'' +
+                " category='" + category + '\'' +
+                " scores='" + averageScores() + '\'';
+    }
+
+    public String averageScores() {
+        int sum = 0;
+        int items = 0;
+        for (Integer score : scores) {
+            sum += score;
+            items++;
+        }
+        if (items == 0) {
+            return "Not rated yet.";
+        } else {
+            return String.valueOf(sum / items);
+        }
+    }
+
 }
