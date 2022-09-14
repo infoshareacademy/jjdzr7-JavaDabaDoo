@@ -53,9 +53,6 @@ public class LibraryControl {
                 case PRINT_HISTORY:
                     printBorrowHistory();
                     break;
-                case PRINT_NEW_BOOKS:
-                    //function
-                    break;
                 case EXIT:
                     exit();
                     break;
@@ -74,7 +71,7 @@ public class LibraryControl {
             for (Book book : user.getBorrowlist()) {
                 System.out.println(book);
             }
-            returnBook = booksSearchEngine.askQuestion("Would you like to return book?");
+            returnBook = booksSearchEngine.askQuestion("Would you like to return book? (yes/no)");
         }
         int id = 0;
         if (returnBook) {
@@ -147,8 +144,7 @@ public class LibraryControl {
         DETAILS_BOOK(4, "Display book's details"),
         BORROW_BOOK(5, "Borrow book"),
         PRINT_BORROWED(6, "Display borrowed books"),
-        PRINT_HISTORY(7, "Print borrow history"),
-        PRINT_NEW_BOOKS(8, "Find book");
+        PRINT_HISTORY(7, "Print borrow history");
 
 
         private int value;
