@@ -1,8 +1,6 @@
 package com.infoshareacademy;
 
 
-
-
 public class Main {
     public static void main(String[] args) {
 
@@ -13,8 +11,7 @@ public class Main {
         BooksSearchEngine booksSearchEngine = new BooksSearchEngine(library, user);
 
 
-
-        LibraryControl libraryControl = new LibraryControl(library,booksSearchEngine,booksFileHandler, user);
+        LibraryControl libraryControl = new LibraryControl(library, booksSearchEngine, booksFileHandler, user);
         libraryControl.controlLoop();
     }
 }

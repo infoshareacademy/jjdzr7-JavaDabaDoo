@@ -56,11 +56,9 @@ public class BooksFileHandler {
 //        }
 
 
-
-
-        // przeiterować listę books i każdy element zamienić na stringa za pomocą metody toCustomString
-        // i wynik tej pętli zapisać do listy Stringów
-        // listę stringów przeiterować i każdy element zapisać jako linię do pliku
+    // przeiterować listę books i każdy element zamienić na stringa za pomocą metody toCustomString
+    // i wynik tej pętli zapisać do listy Stringów
+    // listę stringów przeiterować i każdy element zapisać jako linię do pliku
 
 //    }
 
