@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Book {
+public class Book implements Comparable<Book> {
     private long id;
     private String isbn;
     private String title;
@@ -130,4 +130,8 @@ public class Book {
     }
 
 
+    @Override
+    public int compareTo(Book book) {
+        return dateOfAdd.compareTo(book.dateOfAdd);
+    }
 }
