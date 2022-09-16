@@ -5,10 +5,9 @@ import java.util.List;
 import java.util.Scanner;
 
 public class BooksSearchEngine {
+    static Scanner input = new Scanner(System.in);
     private Library library;
     private User user;
-
-    static Scanner input = new Scanner(System.in);
 
     public BooksSearchEngine(Library library, User user) {
         this.library = library;
@@ -30,12 +29,16 @@ public class BooksSearchEngine {
 
     public Book borrowBook() {
         boolean choice = askQuestion("Do you want borrow book?(yes/no)");
-        int id = -1;
-        if (choice) {
-            System.out.println("Type id of book");
-            id = input.nextInt();
-            input.nextLine();
-
+        Integer id = null;
+        while (id == null) {
+            if (choice) {
+                System.out.println("Type id of book");
+                try {
+                    id = Integer.valueOf(input.nextLine());
+                } catch (Exception e) {
+                    System.out.println("type a decimal");
+                }
+            }
         }
         Book bookById = findBookById(id);
         user.borrowBook(bookById);
@@ -129,12 +132,14 @@ public class BooksSearchEngine {
 
     private TypeOfSearch getChoice() {
         Integer choice = null;
-        do {
-            if (choice != null) {
-                System.out.println("Incorrect choice!");
+        while (choice == null) {
+            try {
+                choice = Integer.valueOf(input.nextLine());
+            } catch (Exception e) {
+                System.out.println("type an decimal!");
             }
-            choice = (Integer.valueOf(input.nextLine()));
-        } while (!(choice >= 0 && choice <= 5));
+        }
+
         return TypeOfSearch.values()[choice];
     }
 
@@ -145,6 +150,7 @@ public class BooksSearchEngine {
             if (choice == TypeOfSearch.EXIT) {
                 break;
             }
+            System.out.println("Type searching text");
             String searchString = input.nextLine();
             printPositions(searchBy(listOfBooks, choice, searchString));
 
