@@ -2,7 +2,7 @@ package com.infoshareacademy;
 
 
 import java.util.InputMismatchException;
-
+import java.util.List;
 import java.util.Scanner;
 
 public class LibraryControl {
@@ -53,8 +53,8 @@ public class LibraryControl {
                 case PRINT_HISTORY:
                     printBorrowHistory();
                     break;
-                case PRINT_NEW_BOOKS:
-                    //function
+                case PRINT_LATEST_ADDED:
+                    sortList();
                     break;
                 case EXIT:
                     exit();
@@ -74,7 +74,7 @@ public class LibraryControl {
             for (Book book : user.getBorrowlist()) {
                 System.out.println(book);
             }
-            returnBook = booksSearchEngine.askQuestion("Would you like to return book?");
+            returnBook = booksSearchEngine.askQuestion("Would you like to return book? (yes/no)");
         }
         int id = 0;
         if (returnBook) {
@@ -87,6 +87,7 @@ public class LibraryControl {
         }
 
     }
+
     private void printBorrowHistory() {
         if (user.getHistory().isEmpty()) {
             System.out.println("There is no history of borrowed books.");
@@ -139,6 +140,45 @@ public class LibraryControl {
         System.out.println("Program end, ciao!");
     }
 
+    private void sortList() {
+        printBooks(library.getSortedList(
+                (p1, p2) -> -p1.getDateOfAdd().compareTo(p2.getDateOfAdd())
+        ));
+    }
+
+
+    private void printBooks(List<Book> books) {
+
+        System.out.println("How many recent book would you like to display?");
+        int noBooksToDisplay = -1;
+
+        while (true) {
+            try {
+                noBooksToDisplay = sc.nextInt();
+                if (noBooksToDisplay > 0 && noBooksToDisplay <= books.size()) {
+                    System.out.println(noBooksToDisplay + " recently added books:");
+                    for (int i = 0; i < noBooksToDisplay; i++) {
+                        System.out.println(books.get(i));
+
+                    }
+                    break;
+                } else {
+                    System.out.println("There are less books in library \nAll books:");
+                    for (Book book : books) {
+                        System.out.println(book);
+                    }
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Wrong input, try use numbers");
+                sc.nextLine();
+            }
+
+
+        }
+
+
+    }
+
     private enum Option {
         EXIT(0, "Exit"),
         SEARCH_BOOK(1, "Search book"),
@@ -148,7 +188,7 @@ public class LibraryControl {
         BORROW_BOOK(5, "Borrow book"),
         PRINT_BORROWED(6, "Display borrowed books"),
         PRINT_HISTORY(7, "Print borrow history"),
-        PRINT_NEW_BOOKS(8, "Find book");
+        PRINT_LATEST_ADDED(8, "Print latest added");
 
 
         private int value;
@@ -166,4 +206,6 @@ public class LibraryControl {
 
 
     }
+
+
 }

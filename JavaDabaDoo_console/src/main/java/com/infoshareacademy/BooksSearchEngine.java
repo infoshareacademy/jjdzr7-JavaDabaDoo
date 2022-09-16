@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Scanner;
 
 public class BooksSearchEngine {
-   private Library library;
-   private User user;
+    private Library library;
+    private User user;
 
     static Scanner input = new Scanner(System.in);
 
@@ -24,7 +24,7 @@ public class BooksSearchEngine {
             System.out.println(result.toString());
         }
 
-       borrowBook();
+        borrowBook();
 
     }
 
@@ -33,7 +33,7 @@ public class BooksSearchEngine {
         int id = -1;
         if (choice) {
             System.out.println("Type id of book");
-             id = input.nextInt();
+            id = input.nextInt();
             input.nextLine();
 
         }
@@ -45,15 +45,16 @@ public class BooksSearchEngine {
 
     public Book findBookById(int id) {
         for (Book book : library.booksList) {
-            if (book.getId() == id){
+            if (book.getId() == id) {
                 return book;
             }
         }
         return null;
     }
+
     public Book findBorrowedBookById(int id) {
         for (Book book : user.getBorrowlist()) {
-            if (book.getId() == id){
+            if (book.getId() == id) {
                 return book;
             }
         }
