@@ -46,12 +46,22 @@ public class BooksFileHandler {
         }
         return bookList;
     }
-
 //    public void save(List<Book> books) {
 //
 //        List<Book> saveList = new ArrayList<>();
 //        for (Book element : books) {
 //            element.toCustomString();
+//            for (String line : linesToSave)
+//            writer.write(line)
+
+//
+//    List<String> linesToSave;
+//            for (Book b : books)
+//            linesToSave.add(b.toCustomString)
+//            for (String line : linesToSave)
+//            writer.write(line)
+
+
 //
 //        }
 

@@ -129,6 +129,13 @@ public class Book implements Comparable<Book> {
         }
     }
 
+    String scoresString = toString();
+
+    public String toCustomString() {
+        return (id + ";" + isbn + ";" + title + ";" + author + ";" + language + ";" + category + ";" + scoresString + ";" + dateOfAdd.toString() + ";");
+
+    }
+
 
     @Override
     public int compareTo(Book book) {
