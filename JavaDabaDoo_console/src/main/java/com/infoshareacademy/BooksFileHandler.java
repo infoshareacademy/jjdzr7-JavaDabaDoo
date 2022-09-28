@@ -9,6 +9,7 @@ import java.util.Scanner;
 public class BooksFileHandler {
     public final String BOOKS_IN_LIBRARY = "listBooks.txt";
     File file = new File(BOOKS_IN_LIBRARY);
+
     public List<Book> read() {
         List<Book> bookList = new ArrayList<>();
 
@@ -50,17 +51,18 @@ public class BooksFileHandler {
 
         List<String> linesToSave = new ArrayList<>();
         Writer writer = new FileWriter(file);
+
         for (Book element : books) {
-            element.toCustomString();
-            linesToSave.add(element.toCustomString());
-            for (String line : linesToSave) {
-                writer.write(line);
-            }
+            String line = element.toCustomString();
+            linesToSave.add(line);
         }
+
+        for (String line : linesToSave) {
+            writer.write(line);
+        }
+        writer.close();
     }
-    // przeiterować listę books i każdy element zamienić na stringa za pomocą metody toCustomString
-    // i wynik tej pętli zapisać do listy Stringów
-    // listę stringów przeiterować i każdy element zapisać jako linię do pliku
+
     public void add(List<Book> books) {
 
 
