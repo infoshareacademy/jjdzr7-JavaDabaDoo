@@ -133,11 +133,11 @@ public class Book implements Comparable<Book> {
 
     public String toCustomString() {
         String newString = null;
-        newString.replace(" ","");
-        newString.replace("]","");
-        newString.replace("[","");
+        newString.replace(" ", "");
+        newString.replace("]", "");
+        newString.replace("[", "");
         return (id + ";" + isbn + ";" + title + ";" + author + ";" + language + ";" + category + ";" + scoresString + ";" + dateOfAdd.toString() + ";");
-        
+
     }
 
 
@@ -145,4 +145,6 @@ public class Book implements Comparable<Book> {
     public int compareTo(Book book) {
         return dateOfAdd.compareTo(book.dateOfAdd);
     }
+
+
 }

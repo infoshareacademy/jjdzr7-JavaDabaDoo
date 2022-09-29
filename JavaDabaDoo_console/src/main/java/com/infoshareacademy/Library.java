@@ -15,4 +15,35 @@ public class Library {
         return booksList;
 
     }
+
+    public void add(Book book, List<Book> getSortedList) {
+        if (book != null) {
+            getSortedList.add(book);
+        } else {
+            System.out.println("Cannot add Null !");
+        }
+
+
+    }
+
+
+    public void remove(Book book, List<Book> getSortedList) {
+
+        getSortedList.remove(book);
+
+    }
+
+    public void create() {
+
+        Book book = new Book(
+                6,
+                "123-22-58-64454-2",
+                "Ja Robot",
+                "Isaac Asimov",
+                "English",
+                "Sci-fi");
+
+    }
+
+
 }
