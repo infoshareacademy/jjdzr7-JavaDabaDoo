@@ -17,9 +17,9 @@ public class Library {
 
     }
 
-    public void add(Book book, List<Book> getSortedList) {
+    public void add(Book book) {
         if (book != null) {
-            getSortedList.add(book);
+            booksList.add(book);
         } else {
             System.out.println("Cannot add Null !");
         }
@@ -27,9 +27,8 @@ public class Library {
 
     }
 
-    public void remove(Book book, Library getSortedList) {
-
-        getSortedList.remove(book);
+    public void remove(Book book) {
+        booksList.remove(book);
 
     }
 
