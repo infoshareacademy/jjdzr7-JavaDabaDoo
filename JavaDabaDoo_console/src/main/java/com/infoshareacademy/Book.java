@@ -14,7 +14,7 @@ public class Book implements Comparable<Book> {
     private List<Integer> scores;
     private LocalDateTime dateOfAdd;
 
-    public Book() {
+    public Book(String id, String isbn, String title, String author, String language, String category) {
     }
 
     public Book(long id, String isbn, String title, String author, String language, String category) {
@@ -130,9 +130,9 @@ public class Book implements Comparable<Book> {
     }
 
     String scoresString = toString();
-
+    String newString = null;
     public String toCustomString() {
-        String newString = null;
+
         newString.replace(" ", "");
         newString.replace("]", "");
         newString.replace("[", "");
