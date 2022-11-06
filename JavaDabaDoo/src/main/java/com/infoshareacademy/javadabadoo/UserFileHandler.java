@@ -1,26 +1,29 @@
 package com.infoshareacademy.javadabadoo;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.context.annotation.ComponentScan;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.DefaultResourceLoader;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
+import org.springframework.stereotype.Component;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 
-@ComponentScan
+@Component
 public class UserFileHandler implements IUserProvider {
 
+    @Autowired
+    private ObjectMapper mapper;
+
+    @Autowired
+    private ResourceLoaderClient resClient;
 
     @Override
     public void saveUser(User user) {
         try {
-            ObjectMapper mapper = new ObjectMapper();
             ResourceLoader resourceLoader = new DefaultResourceLoader();
-            Resource resource = resourceLoader.getResource("user.json");
-            InputStream input = resource.getInputStream();
+            Resource resource = resourceLoader.getResource("classpath:user.json");
             File file = resource.getFile();
             mapper.writeValue(file, user);
         } catch (IOException e) {
@@ -33,10 +36,8 @@ public class UserFileHandler implements IUserProvider {
     public User readUser() {
 
         try {
-            ObjectMapper mapper = new ObjectMapper();
             ResourceLoader resourceLoader = new DefaultResourceLoader();
-            Resource resource = resourceLoader.getResource("user.json");
-            InputStream input = resource.getInputStream();
+            Resource resource = resourceLoader.getResource("classpath:user.json");
             File file = resource.getFile();
             return mapper.readValue(file, User.class);
         } catch (IOException e) {
