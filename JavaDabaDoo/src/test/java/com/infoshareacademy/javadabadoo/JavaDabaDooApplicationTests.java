@@ -7,7 +7,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 class JavaDabaDooApplicationTests {
 
     @Test
-    void contextLoads() {
+    void serializeAndDeserializeUser() {
+        // to be removed
+        IUserProvider test = new UserFileHandler();
+        User user = new User("koko");
+        test.saveUser(user);
+        User user2 = test.readUser();
+        assert (user.equals(user2));
     }
 
 }
