@@ -9,7 +9,6 @@ public class JavaDabaDooApplication {
     public static void main(String[] args) {
         SpringApplication.run(JavaDabaDooApplication.class, args);
 
-
     }
 
 }
