@@ -4,45 +4,45 @@ import java.util.Objects;
 
 public class AudioBook extends Item {
 
-    private String tematyka;
-    private String zrodlo;
+    private String subject;
+    private String source;
 
-    public AudioBook(long id, String title, String author, Language language, String tematyka, String zrodlo) {
+    public AudioBook(long id, String title, String author, Language language, String subject, String source) {
         super(id, title, author, language);
-        this.tematyka = tematyka;
-        this.zrodlo = zrodlo;
+        this.subject = subject;
+        this.source = source;
     }
 
-    public String getTematyka() {
-        return tematyka;
+    public String getSubject() {
+        return subject;
     }
 
-    public void setTematyka(String tematyka) {
-        this.tematyka = tematyka;
+    public void setSubject(String subject) {
+        this.subject = subject;
     }
 
-    public String getZrodlo() {
-        return zrodlo;
+    public String getSource() {
+        return source;
     }
 
-    public void setZrodlo(String zrodlo) {
-        this.zrodlo = zrodlo;
+    public void setSource(String source) {
+        this.source = source;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof AudioBook audioBook)) return false;
-        return Objects.equals(tematyka, audioBook.tematyka) && Objects.equals(zrodlo, audioBook.zrodlo);
+        return Objects.equals(subject, audioBook.subject) && Objects.equals(source, audioBook.source);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(tematyka, zrodlo);
+        return Objects.hash(subject, source);
     }
 
     @Override
     public String toString() {
-        return super.toString() + ", " + tematyka + ", " + zrodlo;
+        return super.toString() + ", " + subject + ", " + source;
     }
 }

@@ -5,14 +5,14 @@ import java.util.Objects;
 public class Article extends Item {
 
     private String format;
-    private String lektor;
-    private Long dlugosc;
+    private String lector;
+    private Long length;
 
-    public Article(long id, String title, String author, Language language, String format, String lektor, Long dlugosc) {
+    public Article(long id, String title, String author, Language language, String format, String lector, Long length) {
         super(id, title, author, language);
         this.format = format;
-        this.lektor = lektor;
-        this.dlugosc = dlugosc;
+        this.lector = lector;
+        this.length = length;
     }
 
     public String getFormat() {
@@ -23,35 +23,35 @@ public class Article extends Item {
         this.format = format;
     }
 
-    public String getLektor() {
-        return lektor;
+    public String getLector() {
+        return lector;
     }
 
-    public void setLektor(String lektor) {
-        this.lektor = lektor;
+    public void setLector(String lector) {
+        this.lector = lector;
     }
 
-    public Long getDlugosc() {
-        return dlugosc;
+    public Long getLength() {
+        return length;
     }
 
-    public void setDlugosc(Long dlugosc) {
-        this.dlugosc = dlugosc;
+    public void setLength(Long length) {
+        this.length = length;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Article article)) return false;
-        return Objects.equals(format, article.format) && Objects.equals(lektor, article.lektor) && Objects.equals(dlugosc, article.dlugosc);
+        return Objects.equals(format, article.format) && Objects.equals(lector, article.lector) && Objects.equals(length, article.length);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(format, lektor, dlugosc);
+        return Objects.hash(format, lector, length);
     }
     @Override
     public String toString() {
-        return super.toString() + ", " + format + ", " + lektor + ", " + dlugosc;
+        return super.toString() + ", " + format + ", " + lector + ", " + length;
     }
 }
