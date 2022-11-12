@@ -4,45 +4,54 @@ import java.util.Objects;
 
 public class AudioBook extends Item {
 
-    private String subject;
-    private String source;
+    private String format;
+    private String lector;
+    private Long length;
 
-    public AudioBook(long id, String title, String author, Language language, String subject, String source) {
+    public AudioBook(long id, String title, String author, Language language, String format, String lector, Long length) {
         super(id, title, author, language);
-        this.subject = subject;
-        this.source = source;
+        this.format = format;
+        this.lector = lector;
+        this.length = length;
     }
 
-    public String getSubject() {
-        return subject;
+    public String getFormat() {
+        return format;
     }
 
-    public void setSubject(String subject) {
-        this.subject = subject;
+    public void setFormat(String format) {
+        this.format = format;
     }
 
-    public String getSource() {
-        return source;
+    public String getLector() {
+        return lector;
     }
 
-    public void setSource(String source) {
-        this.source = source;
+    public void setLector(String lector) {
+        this.lector = lector;
+    }
+
+    public Long getLength() {
+        return length;
+    }
+
+    public void setLength(Long length) {
+        this.length = length;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof AudioBook audioBook)) return false;
-        return Objects.equals(subject, audioBook.subject) && Objects.equals(source, audioBook.source);
+        if (!(o instanceof AudioBook article)) return false;
+        return Objects.equals(format, article.format) && Objects.equals(lector, article.lector) && Objects.equals(length, article.length);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(subject, source);
+        return Objects.hash(format, lector, length);
     }
-
     @Override
     public String toString() {
-        return super.toString() + ", " + subject + ", " + source;
+        return super.toString() + ", " + format + ", " + lector + ", " + length;
     }
 }
