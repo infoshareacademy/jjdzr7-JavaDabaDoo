@@ -1,4 +1,4 @@
-package com.infoshareacademy.javadabadoo;
+package com.infoshareacademy.javadabadoo.model;
 
 import java.util.Objects;
 
