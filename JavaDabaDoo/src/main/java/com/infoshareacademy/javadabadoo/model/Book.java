@@ -1,6 +1,11 @@
 package com.infoshareacademy.javadabadoo.model;
 
+import com.fasterxml.jackson.annotation.JsonValue;
+
+import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class Book extends Item {
 
@@ -12,6 +17,20 @@ public class Book extends Item {
         super(id, title, author, language);
         this.isbn = isbn;
         this.category = category;
+    }
+
+    public Book(String text) {
+        String[] split = text.split("; ");
+        setId(Long.parseLong(split[0]));
+        setTitle(split[1]);
+        setAuthor(split[2]);
+        setLanguage(Language.valueOf(split[3]));
+        String scoreString = split[4].replace("[", "").replace("]", "");
+        setScores(Arrays.asList(scoreString.split(", ")).stream().map(Integer::valueOf)
+                .collect(Collectors.toList()));
+        setDateOfAdd(LocalDateTime.parse(split[5]));
+        this.isbn = split[6];
+        this.category = split[7];
     }
 
     public String getIsbn() {
@@ -44,8 +63,9 @@ public class Book extends Item {
     }
 
     @Override
+    @JsonValue
     public String toString() {
-        return super.toString() + ", " + isbn + ", " + category;
+        return super.toString() + "; " + isbn + "; " + category;
     }
 }
 

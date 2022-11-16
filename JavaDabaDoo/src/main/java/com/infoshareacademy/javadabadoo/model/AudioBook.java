@@ -1,6 +1,9 @@
 package com.infoshareacademy.javadabadoo.model;
 
+import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class AudioBook extends Item {
 
@@ -11,6 +14,19 @@ public class AudioBook extends Item {
         super(id, title, author, language);
         this.tematyka = tematyka;
         this.zrodlo = zrodlo;
+    }
+
+    public AudioBook(String text) {
+        String[] split = text.split("; ");
+        setId(Long.parseLong(split[0]));
+        setTitle(split[1]);
+        setAuthor(split[2]);
+        setLanguage(Language.valueOf(split[3]));
+        setScores(Arrays.asList(split[4].replace("[", "").replace("]", "")
+                .split(", ")).stream().map(Integer::valueOf).collect(Collectors.toList()));
+        setDateOfAdd(LocalDateTime.parse(split[5]));
+        this.tematyka = split[6];
+        this.zrodlo = split[7];
     }
 
     public String getTematyka() {
@@ -43,6 +59,6 @@ public class AudioBook extends Item {
 
     @Override
     public String toString() {
-        return super.toString() + ", " + tematyka + ", " + zrodlo;
+        return super.toString() + "; " + tematyka + "; " + zrodlo;
     }
 }
