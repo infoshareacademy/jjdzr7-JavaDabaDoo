@@ -4,45 +4,54 @@ import java.util.Objects;
 
 public class AudioBook extends Item {
 
-    private String tematyka;
-    private String zrodlo;
+    private String format;
+    private String lector;
+    private Long length;
 
-    public AudioBook(long id, String title, String author, Language language, String tematyka, String zrodlo) {
+    public AudioBook(long id, String title, String author, Language language, String format, String lector, Long length) {
         super(id, title, author, language);
-        this.tematyka = tematyka;
-        this.zrodlo = zrodlo;
+        this.format = format;
+        this.lector = lector;
+        this.length = length;
     }
 
-    public String getTematyka() {
-        return tematyka;
+    public String getFormat() {
+        return format;
     }
 
-    public void setTematyka(String tematyka) {
-        this.tematyka = tematyka;
+    public void setFormat(String format) {
+        this.format = format;
     }
 
-    public String getZrodlo() {
-        return zrodlo;
+    public String getLector() {
+        return lector;
     }
 
-    public void setZrodlo(String zrodlo) {
-        this.zrodlo = zrodlo;
+    public void setLector(String lector) {
+        this.lector = lector;
+    }
+
+    public Long getLength() {
+        return length;
+    }
+
+    public void setLength(Long length) {
+        this.length = length;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof AudioBook audioBook)) return false;
-        return Objects.equals(tematyka, audioBook.tematyka) && Objects.equals(zrodlo, audioBook.zrodlo);
+        if (!(o instanceof AudioBook article)) return false;
+        return Objects.equals(format, article.format) && Objects.equals(lector, article.lector) && Objects.equals(length, article.length);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(tematyka, zrodlo);
+        return Objects.hash(format, lector, length);
     }
-
     @Override
     public String toString() {
-        return super.toString() + ", " + tematyka + ", " + zrodlo;
+        return super.toString() + ", " + format + ", " + lector + ", " + length;
     }
 }
