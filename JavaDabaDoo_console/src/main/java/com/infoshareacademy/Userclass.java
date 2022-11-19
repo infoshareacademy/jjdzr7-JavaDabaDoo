@@ -1,4 +1,7 @@
 package com.infoshareacademy;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 public class Userclass {
 
@@ -71,5 +74,20 @@ public class Userclass {
     @Override
     public String toString(){
         return id+ ","+firstName+","+lastName;
+    }
+    
+    public Book borrowBook(Book book) {
+        borrowlist.add(book);
+        return book;
+    }
+
+    public Book returnBook(Book book) {
+        if (borrowlist.contains(book)) {
+            borrowlist.remove(book);
+            history.add(book);
+        } else {
+            System.out.println("Brak książki");
+        }
+        return book;
     }
 }
