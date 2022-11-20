@@ -1,9 +1,11 @@
 package com.infoshareacademy.javadabadoo.model;
+package com.infoshareacademy.javadabadoo.model;
 
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+
 
 public class User {
 

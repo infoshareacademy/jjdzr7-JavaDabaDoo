@@ -1,6 +1,9 @@
 package com.infoshareacademy.javadabadoo.model;
 
+import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class AudioBook extends Item {
 
@@ -26,6 +29,19 @@ public class AudioBook extends Item {
     public String getLector() {
         return lector;
     }
+    public AudioBook(String text) {
+        String[] split = text.split("; ");
+        setId(Long.parseLong(split[0]));
+        setTitle(split[1]);
+        setAuthor(split[2]);
+        setLanguage(Language.valueOf(split[3]));
+        setScores(Arrays.asList(split[4].replace("[", "").replace("]", "")
+                .split(", ")).stream().map(Integer::valueOf).collect(Collectors.toList()));
+        setDateOfAdd(LocalDateTime.parse(split[5]));
+        this.format = split[6];
+        this.lector = split[7];
+        this.length = Long.valueOf(split[8]);
+    }
 
     public void setLector(String lector) {
         this.lector = lector;
@@ -50,8 +66,9 @@ public class AudioBook extends Item {
     public int hashCode() {
         return Objects.hash(format, lector, length);
     }
+
     @Override
     public String toString() {
-        return super.toString() + ", " + format + ", " + lector + ", " + length;
+        return super.toString() + "; " + format + "; " + lector + "; " + length;
     }
 }
