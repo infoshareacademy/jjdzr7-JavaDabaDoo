@@ -10,15 +10,13 @@ import java.util.stream.Collectors;
 
 public class Article extends Item {
 
-    private String format;
-    private String lektor;
-    private Long dlugosc;
+    private String subject;
+    private String source;
 
-    public Article(long id, String title, String author, Language language, String format, String lektor, Long dlugosc) {
+    public Article(long id, String title, String author, Language language, String subject, String source) {
         super(id, title, author, language);
-        this.format = format;
-        this.lektor = lektor;
-        this.dlugosc = dlugosc;
+        this.subject = subject;
+        this.source = source;
     }
 
     public Article(String text) {
@@ -35,40 +33,32 @@ public class Article extends Item {
         this.dlugosc = Long.valueOf(split[8]);
     }
 
-    public String getFormat() {
-        return format;
+    public String getSubject() {
+        return subject;
     }
 
-    public void setFormat(String format) {
-        this.format = format;
+    public void setSubject(String subject) {
+        this.subject = subject;
     }
 
-    public String getLektor() {
-        return lektor;
+    public String getSource() {
+        return source;
     }
 
-    public void setLektor(String lektor) {
-        this.lektor = lektor;
-    }
-
-    public Long getDlugosc() {
-        return dlugosc;
-    }
-
-    public void setDlugosc(Long dlugosc) {
-        this.dlugosc = dlugosc;
+    public void setSource(String source) {
+        this.source = source;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Article article)) return false;
-        return Objects.equals(format, article.format) && Objects.equals(lektor, article.lektor) && Objects.equals(dlugosc, article.dlugosc);
+        if (!(o instanceof Article audioBook)) return false;
+        return Objects.equals(subject, audioBook.subject) && Objects.equals(source, audioBook.source);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(format, lektor, dlugosc);
+        return Objects.hash(subject, source);
     }
 
     @Override

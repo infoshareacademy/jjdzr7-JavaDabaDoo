@@ -7,15 +7,28 @@ import java.util.stream.Collectors;
 
 public class AudioBook extends Item {
 
-    private String tematyka;
-    private String zrodlo;
+    private String format;
+    private String lector;
+    private Long length;
 
-    public AudioBook(long id, String title, String author, Language language, String tematyka, String zrodlo) {
+    public AudioBook(long id, String title, String author, Language language, String format, String lector, Long length) {
         super(id, title, author, language);
-        this.tematyka = tematyka;
-        this.zrodlo = zrodlo;
+        this.format = format;
+        this.lector = lector;
+        this.length = length;
     }
 
+    public String getFormat() {
+        return format;
+    }
+
+    public void setFormat(String format) {
+        this.format = format;
+    }
+
+    public String getLector() {
+        return lector;
+    }
     public AudioBook(String text) {
         String[] split = text.split("; ");
         setId(Long.parseLong(split[0]));
@@ -29,32 +42,28 @@ public class AudioBook extends Item {
         this.zrodlo = split[7];
     }
 
-    public String getTematyka() {
-        return tematyka;
+    public void setLector(String lector) {
+        this.lector = lector;
     }
 
-    public void setTematyka(String tematyka) {
-        this.tematyka = tematyka;
+    public Long getLength() {
+        return length;
     }
 
-    public String getZrodlo() {
-        return zrodlo;
-    }
-
-    public void setZrodlo(String zrodlo) {
-        this.zrodlo = zrodlo;
+    public void setLength(Long length) {
+        this.length = length;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof AudioBook audioBook)) return false;
-        return Objects.equals(tematyka, audioBook.tematyka) && Objects.equals(zrodlo, audioBook.zrodlo);
+        if (!(o instanceof AudioBook article)) return false;
+        return Objects.equals(format, article.format) && Objects.equals(lector, article.lector) && Objects.equals(length, article.length);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(tematyka, zrodlo);
+        return Objects.hash(format, lector, length);
     }
 
     @Override
