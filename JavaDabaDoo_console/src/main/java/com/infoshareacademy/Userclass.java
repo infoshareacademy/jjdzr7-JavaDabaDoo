@@ -1,15 +1,18 @@
 package com.infoshareacademy;
+
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Item;
 
 public class Userclass {
 
     private int userId;
     private String firstName;
-    private STring lastName;
-    private List<Book> borrowlist;
-    private List<Book> history;
+    private String lastName;
+    public List<Item> borrowlist;
+    public List<Item> history;
 
     public Userclass(int userId, String firstName, String lastName) {
         this.userId = userId;
@@ -35,27 +38,27 @@ public class Userclass {
         this.firstName = firstName;
     }
 
-    public STring getLastName() {
+    public String getLastName() {
         return lastName;
     }
 
-    public void setLastName(STring lastName) {
+    public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
-    public List<Book> getBorrowlist() {
+    public List<Item> getBorrowlist() {
         return borrowlist;
     }
 
-    public void setBorrowlist(List<Book> borrowlist) {
+    public void setBorrowlist(List<Item> borrowlist) {
         this.borrowlist = borrowlist;
     }
 
-    public List<Book> getHistory() {
+    public List<Item> getHistory() {
         return history;
     }
 
-    public void setHistory(List<Book> history) {
+    public void setHistory(List<Item> history) {
         this.history = history;
     }
     @Override
@@ -73,21 +76,21 @@ public class Userclass {
 
     @Override
     public String toString(){
-        return id+ ","+firstName+","+lastName;
-    }
-    
-    public Book borrowBook(Book book) {
-        borrowlist.add(book);
-        return book;
+        return userId+ ","+firstName+","+lastName;
     }
 
-    public Book returnBook(Book book) {
-        if (borrowlist.contains(book)) {
-            borrowlist.remove(book);
-            history.add(book);
+    public Item borrowItem(Item item) {
+        borrowlist.add(item);
+        return item;
+    }
+
+    public Item returnItem(Item item) {
+        if (borrowlist.contains(item)) {
+            borrowlist.remove(item);
+            history.add(item);
         } else {
-            System.out.println("Brak książki");
+            System.out.println("Brak publikacji");
         }
-        return book;
+        return item;
     }
 }
