@@ -1,5 +1,7 @@
 package com.infoshareacademy.javadabadoo.model;
 
+import com.fasterxml.jackson.annotation.JsonValue;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,13 +15,17 @@ public class Item {
     private List<Integer> scores;
     private LocalDateTime dateOfAdd;
 
+    public Item() {
+    }
+
     public Item(long id, String title, String author, Language language) {
         this.id = id;
         this.title = title;
         this.author = author;
         this.language = language;
-        this.dateOfAdd = LocalDateTime.now();
+        this.dateOfAdd = LocalDateTime.now().withNano(0);
         this.scores = new ArrayList<>();
+        scores.add(0);
     }
 
     public long getId() {
@@ -84,8 +90,9 @@ public class Item {
     }
 
     @Override
+    @JsonValue
     public String toString() {
-        return id + ", " + title + ", " + author + ", " + language + ", " + scores + ", " + dateOfAdd;
+        return id + "; " + title + "; " + author + "; " + language + "; " + scores + "; " + dateOfAdd;
     }
 
 }
