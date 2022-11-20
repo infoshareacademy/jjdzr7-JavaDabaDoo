@@ -1,6 +1,7 @@
-package com.infoshareacademy.javadabadoo;
+package com.infoshareacademy.javadabadoo.repository;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.infoshareacademy.javadabadoo.model.User;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Component;

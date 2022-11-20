@@ -1,8 +1,5 @@
 package com.infoshareacademy.javadabadoo.model;
 
-import com.infoshareacademy.javadabadoo.Item;
-import com.infoshareacademy.javadabadoo.Language;
-
 import java.util.Objects;
 
 public class Article extends Item {
