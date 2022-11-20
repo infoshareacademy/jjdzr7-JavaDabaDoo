@@ -38,8 +38,9 @@ public class AudioBook extends Item {
         setScores(Arrays.asList(split[4].replace("[", "").replace("]", "")
                 .split(", ")).stream().map(Integer::valueOf).collect(Collectors.toList()));
         setDateOfAdd(LocalDateTime.parse(split[5]));
-        this.tematyka = split[6];
-        this.zrodlo = split[7];
+        this.format = split[6];
+        this.lector = split[7];
+        this.length = Long.valueOf(split[8]);
     }
 
     public void setLector(String lector) {
@@ -68,6 +69,6 @@ public class AudioBook extends Item {
 
     @Override
     public String toString() {
-        return super.toString() + "; " + tematyka + "; " + zrodlo;
+        return super.toString() + "; " + format + "; " + lector + "; " + length;
     }
 }

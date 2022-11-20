@@ -28,9 +28,8 @@ public class Article extends Item {
         setScores(Arrays.asList(split[4].replace("[", "").replace("]", "")
                 .split(", ")).stream().map(Integer::valueOf).collect(Collectors.toList()));
         setDateOfAdd(LocalDateTime.parse(split[5]));
-        this.format = split[6];
-        this.lektor = split[7];
-        this.dlugosc = Long.valueOf(split[8]);
+        this.subject = split[6];
+        this.source = split[7];
     }
 
     public String getSubject() {
@@ -63,6 +62,6 @@ public class Article extends Item {
 
     @Override
     public String toString() {
-        return super.toString() + "; " + format + "; " + lektor + "; " + dlugosc;
+        return super.toString() + "; " + subject + "; " + source;
     }
 }

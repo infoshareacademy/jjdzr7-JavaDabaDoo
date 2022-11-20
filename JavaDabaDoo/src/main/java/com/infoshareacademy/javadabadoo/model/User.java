@@ -1,13 +1,13 @@
 
-package com.infoshareacademy;
+package com.infoshareacademy.javadabadoo.model;
 
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.Item;
 
-public class Userclass {
+
+public class User {
 
     private int userId;
     private String firstName;
@@ -15,7 +15,7 @@ public class Userclass {
     public List<Item> borrowlist;
     public List<Item> history;
 
-    public Userclass(int userId, String firstName, String lastName) {
+    public User(int userId, String firstName, String lastName) {
         this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -65,9 +65,9 @@ public class Userclass {
     @Override
     public boolean equals(Object object) {
         if (this == object) return true;
-        if (!(object instanceof Userclass)) return false;
+        if (!(object instanceof User)) return false;
         if (!super.equals(object)) return false;
-        Userclass userclass = (Userclass) object;
+        User userclass = (User) object;
         return userId == userclass.userId && java.util.Objects.equals(firstName, userclass.firstName) && java.util.Objects.equals(lastName, userclass.lastName) && java.util.Objects.equals(borrowlist, userclass.borrowlist) && java.util.Objects.equals(history, userclass.history);
     }
     @Override
