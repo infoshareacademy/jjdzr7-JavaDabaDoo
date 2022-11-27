@@ -1,9 +1,6 @@
 package com.infoshareacademy.javadabadoo;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.infoshareacademy.javadabadoo.model.Book;
-import com.infoshareacademy.javadabadoo.model.Item;
-import com.infoshareacademy.javadabadoo.model.Language;
 import com.infoshareacademy.javadabadoo.model.User;
 import com.infoshareacademy.javadabadoo.repository.IUserProvider;
 import com.infoshareacademy.javadabadoo.repository.UserFileHandler;
@@ -24,15 +21,15 @@ class JavaDabaDooApplicationTests {
     ResourceLoader resourceLoader;
 
     @Test
-    void serializeAndDeserializeUser() {
+    void serializeAndDeserializeUserTest() {
         // to be removed
         IUserProvider test = new UserFileHandler(mapper, resourceLoader);
         User user = new User(1, "test", "test");
-        test.saveUser(user);
-        List<Item> history = List.of(new Book(1, "abc javy", "Nikt wazny", Language.POLISH, "aaaaaaaaa", "lektura"));
-        List<Item> borrowed = List.of(new Book(2, "abc javy i nic", "Nikt wazny", Language.POLISH, "aaaaaaaaa", "lektura"));
+        List<Integer> history = List.of(1, 2, 3);
+        List<Integer> borrowed = List.of(4, 5, 6);
         user.setBorrowlist(borrowed);
         user.setHistory(history);
+        test.saveUser(user);
 
         User user2 = test.readUser();
         System.out.println(user.toString());
