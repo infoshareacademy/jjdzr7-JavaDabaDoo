@@ -1,5 +1,7 @@
 package com.infoshareacademy.javadabadoo.model;
 
+import com.infoshareacademy.javadabadoo.repository.IUserProvider;
+
 import java.util.List;
 
 public class Library {
@@ -13,7 +15,6 @@ public class Library {
         this.user = user;
         this.items = items;
     }
-
     public User getUser() {
         return user;
     }
@@ -29,4 +30,5 @@ public class Library {
     public void setItems(List<Item> items) {
         this.items = items;
     }
+
 }
