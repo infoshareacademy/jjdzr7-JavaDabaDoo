@@ -2,11 +2,15 @@ package com.infoshareacademy.javadabadoo.model;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+@Entity
+@Table(name = "books")
 public class Book extends Item {
 
     private String isbn;
