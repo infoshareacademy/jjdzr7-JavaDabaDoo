@@ -2,11 +2,12 @@ package com.infoshareacademy.javadabadoo.model;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 
+import javax.persistence.Entity;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.stream.Collectors;
-
+@Entity
 public class Book extends Item {
 
     private String isbn;
@@ -19,19 +20,10 @@ public class Book extends Item {
         this.category = category;
     }
 
-    public Book(String text) {
-        String[] split = text.split("; ");
-        setId(Long.parseLong(split[0]));
-        setTitle(split[1]);
-        setAuthor(split[2]);
-        setLanguage(Language.valueOf(split[3]));
-        String scoreString = split[4].replace("[", "").replace("]", "");
-        setScores(Arrays.asList(scoreString.split(", ")).stream().map(Integer::valueOf)
-                .collect(Collectors.toList()));
-        setDateOfAdd(LocalDateTime.parse(split[5]));
-        this.isbn = split[6];
-        this.category = split[7];
+    public Book() {
+
     }
+
 
     public String getIsbn() {
         return isbn;

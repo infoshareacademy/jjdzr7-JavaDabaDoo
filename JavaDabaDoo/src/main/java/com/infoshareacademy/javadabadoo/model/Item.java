@@ -2,17 +2,22 @@ package com.infoshareacademy.javadabadoo.model;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-
+@Entity
 public class Item {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String title;
     private String author;
     private Language language;
-    private List<Integer> scores;
+    @OneToMany(mappedBy = "item")
+    private List<Rating> scores;
     private LocalDateTime dateOfAdd;
 
     public Item() {
@@ -25,7 +30,6 @@ public class Item {
         this.language = language;
         this.dateOfAdd = LocalDateTime.now().withNano(0);
         this.scores = new ArrayList<>();
-        scores.add(0);
     }
 
     public long getId() {
@@ -60,11 +64,11 @@ public class Item {
         this.language = language;
     }
 
-    public List<Integer> getScores() {
+    public List<Rating> getScores() {
         return scores;
     }
 
-    public void setScores(List<Integer> scores) {
+    public void setScores(List<Rating> scores) {
         this.scores = scores;
     }
 

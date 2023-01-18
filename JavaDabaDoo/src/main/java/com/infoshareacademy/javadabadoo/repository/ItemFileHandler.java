@@ -35,26 +35,26 @@ public class ItemFileHandler implements FileHandler {
         return itemsList;
     }
 
-    @Override
-    public List<Item> read() {
-        List<Item> items = new ArrayList<>();
-        Map<String, String> fromJson = readFromFile();
-        Set<String> itemsAsString = fromJson.keySet();
-        for (String item : itemsAsString) {
-            switch (fromJson.get(item)) {
-                case "Book":
-                    items.add(new Book(item));
-                    break;
-                case "AudioBook":
-                    items.add(new AudioBook(item));
-                    break;
-                case "Article":
-                    items.add(new Article(item));
-                    break;
-            }
-        }
-        return items;
-    }
+   @Override
+   public List<Item> read() {
+  List<Item> items = new ArrayList<>();
+//        Map<String, String> fromJson = readFromFile();
+//        Set<String> itemsAsString = fromJson.keySet();
+//        for (String item : itemsAsString) {
+//            switch (fromJson.get(item)) {
+//                case "Book":
+//                    items.add(new Book(item));
+//                    break;
+//                case "AudioBook":
+//                    items.add(new AudioBook(item));
+//                    break;
+//                case "Article":
+//                    items.add(new Article(item));
+//                    break;
+//            }
+//        }
+      return items;
+}
 
     @Override
     public void write(List<Item> items) {

@@ -3,11 +3,12 @@ package com.infoshareacademy.javadabadoo.model;
 import com.infoshareacademy.javadabadoo.model.Item;
 import com.infoshareacademy.javadabadoo.model.Language;
 
+import javax.persistence.Entity;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.stream.Collectors;
-
+@Entity
 public class Article extends Item {
 
     private String subject;
@@ -19,18 +20,10 @@ public class Article extends Item {
         this.source = source;
     }
 
-    public Article(String text) {
-        String[] split = text.split("; ");
-        setId(Long.parseLong(split[0]));
-        setTitle(split[1]);
-        setAuthor(split[2]);
-        setLanguage(Language.valueOf(split[3]));
-        setScores(Arrays.asList(split[4].replace("[", "").replace("]", "")
-                .split(", ")).stream().map(Integer::valueOf).collect(Collectors.toList()));
-        setDateOfAdd(LocalDateTime.parse(split[5]));
-        this.subject = split[6];
-        this.source = split[7];
+    public Article() {
+
     }
+
 
     public String getSubject() {
         return subject;
