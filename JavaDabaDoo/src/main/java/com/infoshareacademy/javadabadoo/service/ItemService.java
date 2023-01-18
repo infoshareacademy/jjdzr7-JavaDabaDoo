@@ -1,12 +1,20 @@
 package com.infoshareacademy.javadabadoo.service;
 
 import com.infoshareacademy.javadabadoo.model.*;
+import com.infoshareacademy.javadabadoo.repository.ItemFileHandler;
+import org.springframework.stereotype.Component;
 
 import java.util.Scanner;
 
-
+@Component
 public class ItemService {
+    private final ItemFileHandler IFH;
+
     Scanner scan = new Scanner(System.in);
+
+    public ItemService(ItemFileHandler ifh) {
+        IFH = ifh;
+    }
 
     public Item createItem() {
         String typeOfItem = getTypeOfItem();
@@ -80,6 +88,16 @@ public class ItemService {
         System.out.println("What type Item would you like to create? ");
         return scan.nextLine();
     }
+
+public Item deleteItem(Item item){
+        // check if exist in list
+        return item;
+}
+
+public Item updateItem(Item item){
+        //how to update?
+    return item;
+}
 
 
 }
