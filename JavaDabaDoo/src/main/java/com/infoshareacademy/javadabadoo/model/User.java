@@ -11,9 +11,11 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long userId;
-    @OneToMany(mappedBy = "item")
+    @OneToMany
+    @JoinColumn(name = "user_id")
     public List<Item> borrowlist = new ArrayList<>();;
-    @OneToMany(mappedBy = "item")
+    @OneToMany
+    @JoinColumn(name = "user_id")
     public List<Item> history = new ArrayList<>();;
 
     private String firstName;

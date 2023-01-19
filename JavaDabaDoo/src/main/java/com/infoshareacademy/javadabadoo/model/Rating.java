@@ -3,7 +3,7 @@ package com.infoshareacademy.javadabadoo.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "item_rating")
+
 public class Rating {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

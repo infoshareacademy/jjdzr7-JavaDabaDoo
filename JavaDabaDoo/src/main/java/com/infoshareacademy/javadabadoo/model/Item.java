@@ -16,8 +16,9 @@ public class Item {
     private String title;
     private String author;
     private Language language;
-    @OneToMany(mappedBy = "item")
-    private List<Rating> scores;
+    @OneToMany
+    @JoinColumn(name = "item_id")
+    private List<Rating> scores = new ArrayList<>();
     private LocalDateTime dateOfAdd;
 
     public Item() {

@@ -14,14 +14,14 @@ import java.util.List;
 public class JavaDabaDooApplication {
 
     public static void main(String[] args) {
-        ConfigurableApplicationContext context = SpringApplication.run(JavaDabaDooApplication.class, args);
-        ItemFileHandler IFH = context.getBean(ItemFileHandler.class);
-        List<Item> read = IFH.read();
-
-      //  read.forEach(System.out::println);
-        Book book = new Book(10L, "title", "autor", Language.POLISH, "123456", "fantasy");
-        read.add(book);
-        IFH.write(read);
+  SpringApplication.run(JavaDabaDooApplication.class, args);
+//        ItemFileHandler IFH = context.getBean(ItemFileHandler.class);
+//        List<Item> read = IFH.read();
+//
+//      //  read.forEach(System.out::println);
+//        Book book = new Book(10L, "title", "autor", Language.POLISH, "123456", "fantasy");
+//        read.add(book);
+//        IFH.write(read);
     }
 
 }
