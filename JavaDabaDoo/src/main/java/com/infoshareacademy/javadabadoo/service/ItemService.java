@@ -4,18 +4,25 @@ import com.infoshareacademy.javadabadoo.model.*;
 import com.infoshareacademy.javadabadoo.repository.ItemFileHandler;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Scanner;
 
 @Component
 public class ItemService {
     private final ItemFileHandler IFH;
+    private final ItemRepo2 itemRepo2;
 
     Scanner scan = new Scanner(System.in);
 
-    public ItemService(ItemFileHandler ifh) {
+    public ItemService(ItemFileHandler ifh, ItemRepo2 itemRepo) {
+
         IFH = ifh;
+        itemRepo2 = itemRepo;
     }
 
+    public List<Item> getAllItems() {
+        return itemRepo2.findAll();
+    }
     public Item createItem() {
         String typeOfItem = getTypeOfItem();
 
