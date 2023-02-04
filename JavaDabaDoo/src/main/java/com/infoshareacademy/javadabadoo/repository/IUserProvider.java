@@ -2,8 +2,11 @@ package com.infoshareacademy.javadabadoo.repository;
 
 import com.infoshareacademy.javadabadoo.model.User;
 
-public interface IUserProvider {
-    public void saveUser(User user);
+import java.util.ArrayList;
 
-    public User readUser();
+public interface IUserProvider {
+
+    public void saveUsers(ArrayList<User> user);
+
+    public ArrayList<User> readUsers();
 }

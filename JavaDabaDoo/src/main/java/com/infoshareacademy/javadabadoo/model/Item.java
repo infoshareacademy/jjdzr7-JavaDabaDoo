@@ -81,7 +81,7 @@ public class Item {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Item item = (Item) o;
-        return id == item.id && Objects.equals(title, item.title) && Objects.equals(author, item.author) && language == item.language && Objects.equals(scores, item.scores) && Objects.equals(dateOfAdd, item.dateOfAdd);
+        return id == item.id && Objects.equals(title, item.title) && Objects.equals(author, item.author) && language == item.language && Objects.equals(scores, item.scores);//&& Objects.equals(dateOfAdd, item.dateOfAdd);
     }
 
     @Override

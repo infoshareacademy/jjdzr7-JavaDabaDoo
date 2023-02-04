@@ -1,5 +1,6 @@
 package com.infoshareacademy.javadabadoo.repository;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.infoshareacademy.javadabadoo.model.User;
 import org.springframework.core.io.Resource;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 @Component
 public class UserFileHandler implements IUserProvider {
@@ -22,11 +24,11 @@ public class UserFileHandler implements IUserProvider {
     }
 
     @Override
-    public void saveUser(User user) {
+    public void saveUsers(ArrayList<User> users) {
         try {
-            Resource resource = resourceLoader.getResource("classpath:user.json");
+            Resource resource = resourceLoader.getResource("classpath:users.json");
             File file = resource.getFile();
-            mapper.writeValue(file, user);
+            mapper.writeValue(file, users);
         } catch (IOException e) {
             e.printStackTrace();
             System.exit(-1);
@@ -34,12 +36,13 @@ public class UserFileHandler implements IUserProvider {
     }
 
     @Override
-    public User readUser() {
+    public ArrayList<User> readUsers() {
 
         try {
-            Resource resource = resourceLoader.getResource("classpath:user.json");
+            Resource resource = resourceLoader.getResource("classpath:users.json");
             File file = resource.getFile();
-            return mapper.readValue(file, User.class);
+            return mapper.readValue(file, new TypeReference<ArrayList<User>>() {
+            });
         } catch (IOException e) {
             e.printStackTrace();
             System.exit(-1);

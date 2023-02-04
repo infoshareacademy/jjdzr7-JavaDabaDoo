@@ -71,7 +71,7 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return userId == user.userId && borrowlist.equals(user.borrowlist) && history.equals(user.history) && firstName.equals(user.firstName) && lastName.equals(user.lastName);
+        return userId == user.userId && Objects.equals(borrowlist, user.borrowlist) && Objects.equals(history, user.history) && Objects.equals(firstName, user.firstName) && Objects.equals(lastName, user.lastName);
     }
 
     @Override
@@ -81,12 +81,12 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
+        return "{" +
                 "borrowlist=" + borrowlist +
                 ", history=" + history +
                 ", userId=" + userId +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
+                ", firstName=" + firstName +
+                ", lastName=" + lastName +
                 '}';
     }
 
