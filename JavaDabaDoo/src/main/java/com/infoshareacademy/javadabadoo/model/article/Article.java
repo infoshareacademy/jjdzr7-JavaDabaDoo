@@ -1,21 +1,19 @@
-package com.infoshareacademy.javadabadoo.model;
+package com.infoshareacademy.javadabadoo.model.article;
 
-import com.infoshareacademy.javadabadoo.model.Item;
+import com.infoshareacademy.javadabadoo.model.item.Item;
 import com.infoshareacademy.javadabadoo.model.Language;
 
 import javax.persistence.Entity;
-import java.time.LocalDateTime;
-import java.util.Arrays;
 import java.util.Objects;
-import java.util.stream.Collectors;
+
 @Entity
 public class Article extends Item {
 
     private String subject;
     private String source;
 
-    public Article(long id, String title, String author, Language language, String subject, String source) {
-        super(id, title, author, language);
+    public Article(String title, String author, Language language, String subject, String source) {
+        super(title, author, language);
         this.subject = subject;
         this.source = source;
     }

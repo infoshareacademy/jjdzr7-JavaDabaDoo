@@ -1,6 +1,8 @@
-package com.infoshareacademy.javadabadoo.model;
+package com.infoshareacademy.javadabadoo.model.item;
 
 import com.fasterxml.jackson.annotation.JsonValue;
+import com.infoshareacademy.javadabadoo.model.Language;
+import com.infoshareacademy.javadabadoo.model.rating.Rating;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -8,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 @Entity
+@Inheritance
 public class Item {
 
     @Id
@@ -24,8 +27,8 @@ public class Item {
     public Item() {
     }
 
-    public Item(long id, String title, String author, Language language) {
-        this.id = id;
+    public Item(String title, String author, Language language) {
+
         this.title = title;
         this.author = author;
         this.language = language;

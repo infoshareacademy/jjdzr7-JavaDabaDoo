@@ -1,6 +1,7 @@
 package com.infoshareacademy.javadabadoo.model;
 
-import com.infoshareacademy.javadabadoo.repository.IUserProvider;
+import com.infoshareacademy.javadabadoo.model.item.Item;
+import com.infoshareacademy.javadabadoo.model.user.User;
 
 import java.util.List;
 

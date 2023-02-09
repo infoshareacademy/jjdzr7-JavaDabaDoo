@@ -1,4 +1,7 @@
-package com.infoshareacademy.javadabadoo.model;
+package com.infoshareacademy.javadabadoo.model.rating;
+
+import com.infoshareacademy.javadabadoo.model.user.User;
+import com.infoshareacademy.javadabadoo.model.item.Item;
 
 import javax.persistence.*;
 

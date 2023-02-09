@@ -1,15 +1,9 @@
 package com.infoshareacademy.javadabadoo;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.infoshareacademy.javadabadoo.model.User;
-import com.infoshareacademy.javadabadoo.repository.IUserProvider;
-import com.infoshareacademy.javadabadoo.repository.UserFileHandler;
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.core.io.ResourceLoader;
-
-import java.util.List;
 
 @SpringBootTest
 class JavaDabaDooApplicationTests {

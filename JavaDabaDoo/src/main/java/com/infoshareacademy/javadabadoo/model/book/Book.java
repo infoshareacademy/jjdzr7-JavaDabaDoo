@@ -1,12 +1,12 @@
-package com.infoshareacademy.javadabadoo.model;
+package com.infoshareacademy.javadabadoo.model.book;
 
 import com.fasterxml.jackson.annotation.JsonValue;
+import com.infoshareacademy.javadabadoo.model.item.Item;
+import com.infoshareacademy.javadabadoo.model.Language;
 
 import javax.persistence.Entity;
-import java.time.LocalDateTime;
-import java.util.Arrays;
 import java.util.Objects;
-import java.util.stream.Collectors;
+
 @Entity
 public class Book extends Item {
 
@@ -14,8 +14,8 @@ public class Book extends Item {
     private String category;
 
 
-    public Book(long id, String title, String author, Language language, String isbn, String category) {
-        super(id, title, author, language);
+    public Book(String title, String author, Language language, String isbn, String category) {
+        super(title, author, language);
         this.isbn = isbn;
         this.category = category;
     }

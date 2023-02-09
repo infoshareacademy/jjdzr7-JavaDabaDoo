@@ -1,5 +1,7 @@
-package com.infoshareacademy.javadabadoo.model;
+package com.infoshareacademy.javadabadoo.model.user;
 
+
+import com.infoshareacademy.javadabadoo.model.item.Item;
 
 import javax.persistence.*;
 import java.util.ArrayList;

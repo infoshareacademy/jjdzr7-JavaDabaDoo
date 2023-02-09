@@ -1,10 +1,11 @@
-package com.infoshareacademy.javadabadoo.model;
+package com.infoshareacademy.javadabadoo.model.audiobook;
+
+import com.infoshareacademy.javadabadoo.model.item.Item;
+import com.infoshareacademy.javadabadoo.model.Language;
 
 import javax.persistence.Entity;
-import java.time.LocalDateTime;
-import java.util.Arrays;
 import java.util.Objects;
-import java.util.stream.Collectors;
+
 @Entity
 public class AudioBook extends Item {
 
@@ -12,8 +13,8 @@ public class AudioBook extends Item {
     private String lector;
     private Long length;
 
-    public AudioBook(long id, String title, String author, Language language, String format, String lector, Long length) {
-        super(id, title, author, language);
+    public AudioBook(String title, String author, Language language, String format, String lector, Long length) {
+        super(title, author, language);
         this.format = format;
         this.lector = lector;
         this.length = length;
