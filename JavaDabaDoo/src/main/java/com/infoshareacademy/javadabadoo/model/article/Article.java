@@ -1,36 +1,27 @@
-package com.infoshareacademy.javadabadoo.model;
+package com.infoshareacademy.javadabadoo.model.article;
 
-import com.infoshareacademy.javadabadoo.model.Item;
+import com.infoshareacademy.javadabadoo.model.item.Item;
 import com.infoshareacademy.javadabadoo.model.Language;
 
-import java.time.LocalDateTime;
-import java.util.Arrays;
+import javax.persistence.Entity;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
+@Entity
 public class Article extends Item {
 
     private String subject;
     private String source;
 
-    public Article(long id, String title, String author, Language language, String subject, String source) {
-        super(id, title, author, language);
+    public Article(String title, String author, Language language, String subject, String source) {
+        super(title, author, language);
         this.subject = subject;
         this.source = source;
     }
 
-    public Article(String text) {
-        String[] split = text.split("; ");
-        setId(Long.parseLong(split[0]));
-        setTitle(split[1]);
-        setAuthor(split[2]);
-        setLanguage(Language.valueOf(split[3]));
-        setScores(Arrays.asList(split[4].replace("[", "").replace("]", "")
-                .split(", ")).stream().map(Integer::valueOf).collect(Collectors.toList()));
-        setDateOfAdd(LocalDateTime.parse(split[5]));
-        this.subject = split[6];
-        this.source = split[7];
+    public Article() {
+
     }
+
 
     public String getSubject() {
         return subject;

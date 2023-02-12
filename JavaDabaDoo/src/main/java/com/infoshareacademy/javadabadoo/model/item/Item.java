@@ -1,31 +1,39 @@
-package com.infoshareacademy.javadabadoo.model;
+package com.infoshareacademy.javadabadoo.model.item;
 
 import com.fasterxml.jackson.annotation.JsonValue;
+import com.infoshareacademy.javadabadoo.model.Language;
+import com.infoshareacademy.javadabadoo.model.rating.Rating;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-
+@Entity
+@Inheritance
 public class Item {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String title;
     private String author;
     private Language language;
-    private List<Integer> scores;
+    @OneToMany
+    @JoinColumn(name = "item_id")
+    private List<Rating> scores = new ArrayList<>();
     private LocalDateTime dateOfAdd;
 
     public Item() {
     }
 
-    public Item(long id, String title, String author, Language language) {
-        this.id = id;
+    public Item(String title, String author, Language language) {
+
         this.title = title;
         this.author = author;
         this.language = language;
         this.dateOfAdd = LocalDateTime.now().withNano(0);
         this.scores = new ArrayList<>();
-        scores.add(0);
     }
 
     public long getId() {
@@ -60,11 +68,11 @@ public class Item {
         this.language = language;
     }
 
-    public List<Integer> getScores() {
+    public List<Rating> getScores() {
         return scores;
     }
 
-    public void setScores(List<Integer> scores) {
+    public void setScores(List<Rating> scores) {
         this.scores = scores;
     }
 

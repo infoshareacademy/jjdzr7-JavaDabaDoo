@@ -1,37 +1,29 @@
-package com.infoshareacademy.javadabadoo.model;
+package com.infoshareacademy.javadabadoo.model.book;
 
 import com.fasterxml.jackson.annotation.JsonValue;
+import com.infoshareacademy.javadabadoo.model.item.Item;
+import com.infoshareacademy.javadabadoo.model.Language;
 
-import java.time.LocalDateTime;
-import java.util.Arrays;
+import javax.persistence.Entity;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
+@Entity
 public class Book extends Item {
 
     private String isbn;
     private String category;
 
 
-    public Book(long id, String title, String author, Language language, String isbn, String category) {
-        super(id, title, author, language);
+    public Book(String title, String author, Language language, String isbn, String category) {
+        super(title, author, language);
         this.isbn = isbn;
         this.category = category;
     }
 
-    public Book(String text) {
-        String[] split = text.split("; ");
-        setId(Long.parseLong(split[0]));
-        setTitle(split[1]);
-        setAuthor(split[2]);
-        setLanguage(Language.valueOf(split[3]));
-        String scoreString = split[4].replace("[", "").replace("]", "");
-        setScores(Arrays.asList(scoreString.split(", ")).stream().map(Integer::valueOf)
-                .collect(Collectors.toList()));
-        setDateOfAdd(LocalDateTime.parse(split[5]));
-        this.isbn = split[6];
-        this.category = split[7];
+    public Book() {
+
     }
+
 
     public String getIsbn() {
         return isbn;

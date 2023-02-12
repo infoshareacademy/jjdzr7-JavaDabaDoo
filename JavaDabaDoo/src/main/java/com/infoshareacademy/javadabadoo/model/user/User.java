@@ -1,16 +1,25 @@
-package com.infoshareacademy.javadabadoo.model;
+package com.infoshareacademy.javadabadoo.model.user;
 
 
+import com.infoshareacademy.javadabadoo.model.item.Item;
+
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-
+@Entity
 public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long userId;
+    @OneToMany
+    @JoinColumn(name = "user_id")
+    public List<Item> borrowlist = new ArrayList<>();;
+    @OneToMany
+    @JoinColumn(name = "user_id")
+    public List<Item> history = new ArrayList<>();;
 
-    public List<Integer> borrowlist;
-    public List<Integer> history;
-    private int userId;
     private String firstName;
     private String lastName;
 
@@ -18,19 +27,17 @@ public class User {
         this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.borrowlist = new ArrayList<>();
-        this.history = new ArrayList<>();
     }
 
     public User() {
 
     }
 
-    public int getUserId() {
+    public long getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(long userId) {
         this.userId = userId;
     }
 
@@ -50,19 +57,19 @@ public class User {
         this.lastName = lastName;
     }
 
-    public List<Integer> getBorrowlist() {
+    public List<Item> getBorrowlist() {
         return borrowlist;
     }
 
-    public void setBorrowlist(List<Integer> borrowlist) {
+    public void setBorrowlist(List<Item> borrowlist) {
         this.borrowlist = borrowlist;
     }
 
-    public List<Integer> getHistory() {
+    public List<Item> getHistory() {
         return history;
     }
 
-    public void setHistory(List<Integer> history) {
+    public void setHistory(List<Item> history) {
         this.history = history;
     }
 
@@ -90,16 +97,16 @@ public class User {
                 '}';
     }
 
-    public void borrowItem(Integer itemId) {
-        borrowlist.add(itemId);
-    }
+//    public void borrowItem(Integer itemId) {
+//        borrowlist.add(itemId);
+//    }
 
-    public void returnItem(Integer itemId) {
-        if (borrowlist.contains(itemId)) {
-            borrowlist.remove(itemId);
-            history.add(itemId);
-        } else {
-            System.out.println("Brak publikacji");
-        }
-    }
+//    public void returnItem(Integer itemId) {
+//        if (borrowlist.contains(itemId)) {
+//            borrowlist.remove(itemId);
+//            history.add(itemId);
+//        } else {
+//            System.out.println("Brak publikacji");
+//        }
+//    }
 }
