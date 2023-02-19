@@ -34,3 +34,27 @@ class UserController {
 
         return response()->json($user, 200);
     }
+
+    // Update an existing user by ID
+    public function update(Request $request, $id) {
+        $user = $this->userService->getUserById($id);
+
+        if (!$user) {
+            return response()->json(['message' => 'User not found'], 404);
+        }
+
+        $this->validate($request, [
+                'name' => 'required',
+                'email' => 'required|email|unique:users,email,' . $id,
+                'password' => 'required|min:8',
+        ]);
+
+        $updatedUser = $this->userService->updateUser(
+                $user,
+                $request->input('name'),
+                $request->input('email'),
+                $request->input('password')
+        );
+
+        return response()->json($updatedUser, 200);
+    }
