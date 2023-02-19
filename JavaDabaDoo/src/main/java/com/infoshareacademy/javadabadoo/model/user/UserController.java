@@ -24,3 +24,13 @@ class UserController {
 
         return response()->json($user, 201);
     }
+    // Read a single user by ID
+    public function read($id) {
+        $user = $this->userService->getUserById($id);
+
+        if (!$user) {
+            return response()->json(['message' => 'User not found'], 404);
+        }
+
+        return response()->json($user, 200);
+    }
