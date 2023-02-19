@@ -58,3 +58,10 @@ class UserController {
 
         return response()->json($updatedUser, 200);
     }
+
+    // Read a list of all users
+    public function index() {
+        $users = $this->userService->getAllUsers();
+        return response()->json($users, 200);
+    }
+}
