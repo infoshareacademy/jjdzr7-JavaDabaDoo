@@ -1,67 +1,67 @@
 package com.infoshareacademy.javadabadoo.model.user;
 
-class UserController {
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-    protected $userService;
+import java.util.List;
 
-    public function __construct(UserService $userService) {
-        $this->userService = $userService;
-    }
+@RestController
+@RequestMapping("/users")
+public class UserController {
+
+    @Autowired
+    private UserService userService;
 
     // Create a new user
-    public function create(Request $request) {
-        $this->validate($request, [
-                'name' => 'required',
-                'email' => 'required|email|unique:users,email',
-                'password' => 'required|min:8',
-        ]);
-
-        $user = $this->userService->createUser(
-                $request->input('name'),
-                $request->input('email'),
-                $request->input('password')
-        );
-
-        return response()->json($user, 201);
+    @PostMapping
+    public ResponseEntity<User> createUser(@RequestBody User user) {
+        User createdUser = userService.createUser(user);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdUser);
     }
-    // Read a single user by ID
-    public function read($id) {
-        $user = $this->userService->getUserById($id);
 
-        if (!$user) {
-            return response()->json(['message' => 'User not found'], 404);
+    // Read a single user by ID
+    @GetMapping("/{id}")
+    public ResponseEntity<User> getUserById(@PathVariable Long id) {
+        User user = userService.getUserById(id);
+
+        if (user == null) {
+            return ResponseEntity.notFound().build();
         }
 
-        return response()->json($user, 200);
+        return ResponseEntity.ok(user);
     }
 
     // Update an existing user by ID
-    public function update(Request $request, $id) {
-        $user = $this->userService->getUserById($id);
+    @PutMapping("/{id}")
+    public ResponseEntity<User> updateUserById(@PathVariable Long id, @RequestBody User user) {
+        User updatedUser = userService.updateUserById(id, user);
 
-        if (!$user) {
-            return response()->json(['message' => 'User not found'], 404);
+        if (updatedUser == null) {
+            return ResponseEntity.notFound().build();
         }
 
-        $this->validate($request, [
-                'name' => 'required',
-                'email' => 'required|email|unique:users,email,' . $id,
-                'password' => 'required|min:8',
-        ]);
+        return ResponseEntity.ok(updatedUser);
+    }
 
-        $updatedUser = $this->userService->updateUser(
-                $user,
-                $request->input('name'),
-                $request->input('email'),
-                $request->input('password')
-        );
+    // Delete an existing user by ID
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteUserById(@PathVariable Long id) {
+        boolean deleted = userService.deleteUserById(id);
 
-        return response()->json($updatedUser, 200);
+        if (!deleted) {
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.noContent().build();
     }
 
     // Read a list of all users
-    public function index() {
-        $users = $this->userService->getAllUsers();
-        return response()->json($users, 200);
+    @GetMapping
+    public <List> ResponseEntity<List<User>> getAllUsers() {
+        List<User> users = userService.getAllUsers();
+        return ResponseEntity.ok(users);
     }
+}
 }
