@@ -4,41 +4,64 @@ package com.infoshareacademy.javadabadoo.model.user;
 import com.infoshareacademy.javadabadoo.model.item.Item;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Entity
+@Table(name = "application_user")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long userId;
+    private long id;
     @OneToMany
     @JoinColumn(name = "user_id")
     public List<Item> borrowlist = new ArrayList<>();;
     @OneToMany
     @JoinColumn(name = "user_id")
     public List<Item> history = new ArrayList<>();;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "user_roles",
+            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id")
+    )
+    private Set<UserRole> roles = new HashSet<>();
 
     private String firstName;
     private String lastName;
+    private String email;
+    private String password;
 
-    public User(int userId, String firstName, String lastName) {
-        this.userId = userId;
+    public User(int userId, String firstName, String lastName, String email, String password) {
+        this.id = userId;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.email = email;
+        this.password = password;
     }
 
     public User() {
 
     }
+    public Set<UserRole> getRoles() {
+        return roles;
+    }
+    public void setRoles(Set<UserRole> roles) {
+        this.roles = roles;
+    }
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     public long getUserId() {
-        return userId;
+        return id;
     }
 
     public void setUserId(long userId) {
-        this.userId = userId;
+        this.id = userId;
     }
 
     public String getFirstName() {
@@ -73,29 +96,39 @@ public class User {
         this.history = history;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return userId == user.userId && borrowlist.equals(user.borrowlist) && history.equals(user.history) && firstName.equals(user.firstName) && lastName.equals(user.lastName);
+        return id == user.id && Objects.equals(borrowlist, user.borrowlist) && Objects.equals(history, user.history) && Objects.equals(firstName, user.firstName) && Objects.equals(lastName, user.lastName) && Objects.equals(email, user.email);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(borrowlist, history, userId, firstName, lastName);
+        return Objects.hash(id, borrowlist, history, firstName, lastName, email);
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "borrowlist=" + borrowlist +
+                "userId=" + id +
+                ", borrowlist=" + borrowlist +
                 ", history=" + history +
-                ", userId=" + userId +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
                 '}';
     }
+}
 
 //    public void borrowItem(Integer itemId) {
 //        borrowlist.add(itemId);
@@ -109,4 +142,4 @@ public class User {
 //            System.out.println("Brak publikacji");
 //        }
 //    }
-}
+
