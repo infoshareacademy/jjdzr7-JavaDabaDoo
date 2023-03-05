@@ -1,5 +1,7 @@
 package com.infoshareacademy.javadabadoo.model.user;
 
+import com.infoshareacademy.javadabadoo.model.user.dto.UserCredentialsDto;
+
 import java.util.Set;
 import java.util.stream.Collectors;
 

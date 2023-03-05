@@ -1,6 +1,6 @@
 package com.infoshareacademy.javadabadoo.service;
 
-import com.infoshareacademy.javadabadoo.model.user.UserCredentialsDto;
+import com.infoshareacademy.javadabadoo.model.user.dto.UserCredentialsDto;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
