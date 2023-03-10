@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>author</th>
+        <th>title</th>
+        <th>language</th>
+        <th>category</th>
+        <th>isbny</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="book: ${books}">
+        <td th:text="${book.id}"/>
+        <td th:text="${book.author}"/>
+        <td th:text="${book.language}"/>
+        <td th:text="${book.title}"/>
+        <td th:text="${book.category}"/>
+        <td th:text="${book.isbn}"/>
+    </tr>
+    </tbody>
+</table>
+<br>
+<hr>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>author</th>
+        <th>title</th>
+        <th>language</th>
+        <th>lenght</th>
+        <th>Lector</th>
+        <th>Format</th>
+    </thead>
+    <tbody>
+    <tr th:each="audiobook: ${audiobooks}">
+        <td th:text="${audiobook.id}"/>
+        <td th:text="${audiobook.author}"/>
+        <td th:text="${audiobook.title}"/>
+        <td th:text="${audiobook.language}"/>
+        <td th:text="${audiobook.length}"/>
+        <td th:text="${audiobook.lector}"/>
+        <td th:text="${audiobook.format}"/>
+    </tr>
+    <br/>
+    </tbody>
+</table>
+<hr>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>author</th>
+        <th>title</th>
+        <th>language</th>
+        <th>subject</th>
+        <th>source</th>
+    </thead>
+    <tbody>
+    <tr th:each="article: ${articles}">
+        <td th:text="${article.id}"/>
+        <td th:text="${article.author}"/>
+        <td th:text="${article.title}"/>
+        <td th:text="${article.language}"/>
+        <td th:text="${article.subject}"/>
+        <td th:text="${article.source}"/>
+    </tr>
+    <br/>
+    </tbody>
+</table>
+</body>
+</html>
