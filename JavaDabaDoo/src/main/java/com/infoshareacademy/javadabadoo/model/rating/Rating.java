@@ -1,7 +1,9 @@
 package com.infoshareacademy.javadabadoo.model.rating;
 
-import com.infoshareacademy.javadabadoo.model.user.User;
 import com.infoshareacademy.javadabadoo.model.item.Item;
+import com.infoshareacademy.javadabadoo.model.user.User;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 
@@ -10,13 +12,20 @@ import javax.persistence.*;
 public class Rating {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long id;
+    @Setter
+    @Getter
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+    @Setter
+    @Getter
     @ManyToOne
     @JoinColumn(name = "item_id")
     private Item item;
+    @Setter
+    @Getter
     private Integer rating;
 
     public Rating() {
@@ -28,36 +37,5 @@ public class Rating {
         this.rating = rating;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public Item getMovie() {
-        return item;
-    }
-
-    public void setMovie(Item item) {
-        this.item = item;
-    }
-
-    public Integer getRating() {
-        return rating;
-    }
-
-    public void setRating(Integer rating) {
-        this.rating = rating;
-    }
 
 }

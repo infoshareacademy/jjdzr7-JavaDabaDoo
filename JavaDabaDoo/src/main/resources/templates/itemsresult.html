@@ -19,12 +19,15 @@
     </thead>
     <tbody>
     <tr th:each="book: ${books}">
+
         <td th:text="${book.id}"/>
         <td th:text="${book.author}"/>
-        <td th:text="${book.language}"/>
         <td th:text="${book.title}"/>
+        <td th:text="${book.language}"/>
         <td th:text="${book.category}"/>
         <td th:text="${book.isbn}"/>
+        <td><a th:href="@{../item/{id}(id=${book.id})}">Go to</a></td>
+
     </tr>
     </tbody>
 </table>
@@ -43,6 +46,7 @@
     </thead>
     <tbody>
     <tr th:each="audiobook: ${audiobooks}">
+
         <td th:text="${audiobook.id}"/>
         <td th:text="${audiobook.author}"/>
         <td th:text="${audiobook.title}"/>
@@ -50,6 +54,7 @@
         <td th:text="${audiobook.length}"/>
         <td th:text="${audiobook.lector}"/>
         <td th:text="${audiobook.format}"/>
+        <td><a th:href="@{../item/{id}(id=${audiobook.id})}">Go to</a></td>
     </tr>
     <br/>
     </tbody>
@@ -67,15 +72,23 @@
     </thead>
     <tbody>
     <tr th:each="article: ${articles}">
-        <td th:text="${article.id}"/>
-        <td th:text="${article.author}"/>
-        <td th:text="${article.title}"/>
-        <td th:text="${article.language}"/>
-        <td th:text="${article.subject}"/>
-        <td th:text="${article.source}"/>
+        <a href="item/${article.id}">
+            <td th:text="${article.id}"/>
+            <td th:text="${article.author}"/>
+            <td th:text="${article.title}"/>
+            <td th:text="${article.language}"/>
+            <td th:text="${article.subject}"/>
+            <td th:text="${article.source}"/>
+            <td><a th:href="@{../item/{id}(id=${article.id})}">Go to</a></td>
+        </a>
     </tr>
     <br/>
     </tbody>
 </table>
+
+<hr>
+
+<a href="../newItem"> New </a>
+
 </body>
 </html>

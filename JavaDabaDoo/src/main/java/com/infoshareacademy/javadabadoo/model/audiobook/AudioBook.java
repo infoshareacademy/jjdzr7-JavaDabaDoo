@@ -1,7 +1,9 @@
 package com.infoshareacademy.javadabadoo.model.audiobook;
 
-import com.infoshareacademy.javadabadoo.model.item.Item;
 import com.infoshareacademy.javadabadoo.model.Language;
+import com.infoshareacademy.javadabadoo.model.item.Item;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.Entity;
 import java.util.Objects;
@@ -9,8 +11,14 @@ import java.util.Objects;
 @Entity
 public class AudioBook extends Item {
 
+    @Setter
+    @Getter
     private String format;
+    @Setter
+    @Getter
     private String lector;
+    @Setter
+    @Getter
     private Long length;
 
     public AudioBook(String title, String author, Language language, String format, String lector, Long length) {
@@ -24,29 +32,6 @@ public class AudioBook extends Item {
 
     }
 
-    public String getFormat() {
-        return format;
-    }
-
-    public void setFormat(String format) {
-        this.format = format;
-    }
-
-    public String getLector() {
-        return lector;
-    }
-
-    public void setLector(String lector) {
-        this.lector = lector;
-    }
-
-    public Long getLength() {
-        return length;
-    }
-
-    public void setLength(Long length) {
-        this.length = length;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -64,4 +49,5 @@ public class AudioBook extends Item {
     public String toString() {
         return super.toString() + "; " + format + "; " + lector + "; " + length;
     }
+
 }

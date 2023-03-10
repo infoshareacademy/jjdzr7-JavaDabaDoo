@@ -1,7 +1,9 @@
 package com.infoshareacademy.javadabadoo.model.article;
 
-import com.infoshareacademy.javadabadoo.model.item.Item;
 import com.infoshareacademy.javadabadoo.model.Language;
+import com.infoshareacademy.javadabadoo.model.item.Item;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.Entity;
 import java.util.Objects;
@@ -9,7 +11,11 @@ import java.util.Objects;
 @Entity
 public class Article extends Item {
 
+    @Setter
+    @Getter
     private String subject;
+    @Setter
+    @Getter
     private String source;
 
     public Article(String title, String author, Language language, String subject, String source) {
@@ -20,23 +26,6 @@ public class Article extends Item {
 
     public Article() {
 
-    }
-
-
-    public String getSubject() {
-        return subject;
-    }
-
-    public void setSubject(String subject) {
-        this.subject = subject;
-    }
-
-    public String getSource() {
-        return source;
-    }
-
-    public void setSource(String source) {
-        this.source = source;
     }
 
     @Override

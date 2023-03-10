@@ -6,6 +6,43 @@
 
 </head>
 <body>
-<span th:text="${item.id}"/>
+<span th:if="${item instanceof T(com.infoshareacademy.javadabadoo.model.book.Book)}">
+
+        <span th:text="${item.id}"/><br>
+        <span th:text="${item.author}"/><br>
+        <span th:text="${item.language}"/><br>
+        <span th:text="${item.title}"/><br>
+        <span th:text="${item.category}"/><br>
+        <span th:text="${item.isbn}"/><br>
+        <hr>
+        <a th:href="@{../deleteItem/{id}(id=${item.id})}"
+           th:method="delete">Delete</a><br>
+
+</span>
+<span th:if="${item instanceof T(com.infoshareacademy.javadabadoo.model.article.Article)}">
+        <span th:text="${item.id}"/><br>
+        <span th:text="${item.author}"/><br>
+        <span th:text="${item.title}"/><br>
+        <span th:text="${item.language}"/><br>
+        <span th:text="${item.subject}"/><br>
+        <span th:text="${item.source}"/><br>
+        <hr>
+        <a th:href="@{../deleteItem/{id}(id=${item.id})}"
+           th:method="delete">Delete</a><br>
+</span>
+<span th:if="${item instanceof T(com.infoshareacademy.javadabadoo.model.audiobook.AudioBook)}">
+        <span th:text="${item.id}"/><br>
+        <span th:text="${item.author}"/><br>
+        <span th:text="${item.title}"/><br>
+        <span th:text="${item.language}"/><br>
+        <span th:text="${item.length}"/><br>
+        <span th:text="${item.lector}"/><br>
+        <span th:text="${item.format}"/><br>
+        <hr>
+        <a th:href="@{../deleteItem/{id}(id=${item.id})}"
+           th:method="delete">Delete</a><br>
+</span>
+
+
 </body>
 </html>
