@@ -83,33 +83,96 @@ public class ItemController {
         articleRepository.save(formData);
         return "newArticle";
     }
- /*   @RequestMapping("/newArticle")
-    String newArticle(Model model) {
-        model.addAttribute("test", "test");
-        return "newArticle";
-    }
 
-
-    @RequestMapping("/editArticle/{id}")
+    @GetMapping("/eArticle/{id}")
     String editArticle(@PathVariable Long id, Model model) {
 
+        var article = articleRepository.findById(id)
+                .map(item -> {
+                    model.addAttribute("formData", item);
+                    return item;
+                });
+
+        if (article.isPresent()) {
+            return "redirect:/editArticle/" + id;
+        }
+        return "redirect:/items";
+
+    }
+
+    @GetMapping("/editArticle/{id}")
+    String editArticle(@PathVariable Long id, @ModelAttribute("formData") Article formData,
+                       BindingResult bindingResult,
+                       Model model) {
+
+        if (bindingResult.hasErrors()) {
+            return "editArticle";
+        }
         articleRepository.findById(id)
                 .map(item -> {
-                    item.setLanguage(newItem.getLanguage());
-                    item.setAuthor(newItem.getAuthor());
-                    item.setScores(new ArrayList<Rating>());
-                    item.setTitle(item.getTitle());
-                    item.setSource(item.getSource());
-                    item.setSubject(item.getSubject());
-                    articleRepository.save(item);
-                    model.addAttribute("item", item);
+                    model.addAttribute("formData", item);
+                    model.addAttribute("id", id);
                     return "editArticle";
                 });
 
-        model.addAttribute("test", "test");
         return "editArticle";
     }
-  */
+
+    @PostMapping("/editArticleDone/{id}")
+    String editArticle2(@PathVariable Long id, @ModelAttribute("formData") Article formData,
+                        BindingResult bindingResult,
+                        Model model) {
+
+        articleRepository.save(formData);
+
+        return "redirect:/items";
+    }
+
+
+    @GetMapping("/eBook/{id}")
+    String editBook(@PathVariable Long id, Model model) {
+
+        var article = bookRepository.findById(id)
+                .map(item -> {
+                    model.addAttribute("formData", item);
+                    return item;
+                });
+
+        if (article.isPresent()) {
+            return "redirect:/editBook/" + id;
+        }
+        return "redirect:/items";
+
+    }
+
+    @GetMapping("/editBook/{id}")
+    String editBook(@PathVariable Long id, @ModelAttribute("formData") Book formData,
+                    BindingResult bindingResult,
+                    Model model) {
+
+        if (bindingResult.hasErrors()) {
+            return "editBook";
+        }
+
+        bookRepository.findById(id)
+                .map(item -> {
+                    model.addAttribute("formData", item);
+                    model.addAttribute("id", id);
+                    return "editBook";
+                });
+
+        return "editBook";
+    }
+
+    @PostMapping("/editBookDone/{id}")
+    String editBook2(@PathVariable Long id, @ModelAttribute("formData") Book formData,
+                     BindingResult bindingResult,
+                     Model model) {
+
+        bookRepository.save(formData);
+
+        return "redirect:/items";
+    }
 
     @GetMapping("/newBook")
     public String showCreateBookForm(Model model) {
@@ -128,37 +191,55 @@ public class ItemController {
         return "newBook";
     }
 
-    /*   @RequestMapping("/newBook")
-       String newBook(Model model) {
 
-           model.addAttribute("test", "test");
-           return "newBook";
-       }
+    @GetMapping("/eAudioBook/{id}")
+    String editAudioBook(@PathVariable Long id, Model model) {
 
-       @RequestMapping("/editBook/{id}")
-       String editBook(@PathVariable Long id, Model model) {
+        var audiobook = audiobookRepository.findById(id)
+                .map(item -> {
+                    model.addAttribute("formData", item);
+                    return item;
+                });
 
-           bookRepository.findById(id)
-                   .map(item -> {
-                       item.setLanguage(newItem.getLanguage());
-                       item.setAuthor(newItem.getAuthor());
-                       item.setScores(new ArrayList<Rating>());
-                       item.setTitle(item.getTitle());
-                       item.setDateOfAdd(LocalDateTime.now());
-                       item.setIsbn(item.getIsbn());
-                       item.setCategory(item.getCategory());
-                       bookRepository.save(item);
-                       model.addAttribute("item", item);
-                       return "editBook";
-                   });
+        if (audiobook.isPresent()) {
+            return "redirect:/editAudioBook/" + id;
+        }
+        return "redirect:/items";
 
-           model.addAttribute("test", "test");
-           return "editBook";
-       }
-   */
+    }
+
+    @GetMapping("/editAudioBook/{id}")
+    String editArticle(@PathVariable Long id, @ModelAttribute("formData") AudioBook formData,
+                       BindingResult bindingResult,
+                       Model model) {
+
+        if (bindingResult.hasErrors()) {
+            return "editAudioBook";
+        }
+
+        audiobookRepository.findById(id)
+                .map(item -> {
+                    model.addAttribute("formData", item);
+                    model.addAttribute("id", id);
+                    return "editAudioBook";
+                });
+
+        return "editAudioBook";
+    }
+
+    @PostMapping("/editAudioBookDone/{id}")
+    String editArticle2(@PathVariable Long id, @ModelAttribute("formData") AudioBook formData,
+                        BindingResult bindingResult,
+                        Model model) {
+
+        audiobookRepository.save(formData);
+
+        return "redirect:/items";
+    }
+
     @GetMapping("/newAudioBook")
     public String showCreateAudioBookForm(Model model) {
-        model.addAttribute("formData", new Book());
+        model.addAttribute("formData", new AudioBook());
         return "newAudioBook";
     }
 
@@ -172,38 +253,6 @@ public class ItemController {
         audiobookRepository.save(formData);
         return "newAudioBook";
     }
-    /*
-    @RequestMapping("/newAudiobook")
-    String newAudioBook(Model model) {
-
-        model.addAttribute("test", "test");
-        return "newAudiobook";
-    }
-
-    @RequestMapping("/editAudiobook/{id}")
-    String editAudioBook(@PathVariable Long id, Model model) {
-
-        System.out.println(id);
-        if (true) {
-            audiobookRepository.findById(id)
-                    .map(item -> {
-                        item.setLanguage(newItem.getLanguage());
-                        item.setAuthor(newItem.getAuthor());
-                        item.setScores(new ArrayList<Rating>());
-                        item.setTitle(item.getTitle());
-                        item.setDateOfAdd(LocalDateTime.now());
-                        item.setLector(newItem.getLector());
-                        item.setFormat(newItem.getFormat());
-                        item.setLength(newItem.getLength());
-                        audiobookRepository.save(item);
-                        model.addAttribute("item", item);
-                        return "editAudioBook";
-                    });
-        }
-        model.addAttribute("test", "test");
-        return "editAudioBook";
-    }
-     */
 
 
     @RequestMapping("/deleteItem/{id}")

@@ -9,7 +9,7 @@
       th:action="@{/newAudioBook}"
       th:object="${formData}">
     <div>
-        <label for="author">authore</label>
+        <label for="author">author</label>
         <input id="author" th:field="*{author}"
                type="text">
         <p th:if="${#fields.hasErrors('author')}"
@@ -36,6 +36,29 @@
            th:text="${#strings.listJoin(#fields.errors('language'), ', ')}"></p>
     </div>
 
+    <div>
+        <label for="lector">lector</label>
+        <input id="lector" th:field="*{lector}"
+               type="text">
+        <p th:if="${#fields.hasErrors('lector')}"
+           th:text="${#strings.listJoin(#fields.errors('lector'), ', ')}"></p>
+    </div>
+
+    <div>
+        <label for="length">length</label>
+        <input id="length" th:field="*{length}"
+               type="number">
+        <p th:if="${#fields.hasErrors('length')}"
+           th:text="${#strings.listJoin(#fields.errors('length'), ', ')}"></p>
+    </div>
+
+    <div>
+        <label for="format">format</label>
+        <input id="format" th:field="*{format}"
+               type="text">
+        <p th:if="${#fields.hasErrors('format')}"
+           th:text="${#strings.listJoin(#fields.errors('format'), ', ')}"></p>
+    </div>
     <button type="submit">Create</button>
 </form>
 <br>

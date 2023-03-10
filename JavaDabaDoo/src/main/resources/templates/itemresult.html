@@ -17,6 +17,9 @@
         <hr>
         <a th:href="@{../deleteItem/{id}(id=${item.id})}"
            th:method="delete">Delete</a><br>
+                <br>
+                <a th:href="@{../eBook/{id}(id=${item.id})}"
+                   th:method="GET">EDIT</a>
 
 </span>
 <span th:if="${item instanceof T(com.infoshareacademy.javadabadoo.model.article.Article)}">
@@ -28,7 +31,10 @@
         <span th:text="${item.source}"/><br>
         <hr>
         <a th:href="@{../deleteItem/{id}(id=${item.id})}"
-           th:method="delete">Delete</a><br>
+           th:method="delete">Delete</a>
+        <br>
+                <a th:href="@{../eArticle/{id}(id=${item.id})}"
+                   th:method="GET">EDIT</a>
 </span>
 <span th:if="${item instanceof T(com.infoshareacademy.javadabadoo.model.audiobook.AudioBook)}">
         <span th:text="${item.id}"/><br>
@@ -41,6 +47,11 @@
         <hr>
         <a th:href="@{../deleteItem/{id}(id=${item.id})}"
            th:method="delete">Delete</a><br>
+        <br>
+        <a th:href="@{../eAudioBook/{id}(id=${item.id})}"
+           th:method="GET">EDIT</a>
+
+
 </span>
 
 

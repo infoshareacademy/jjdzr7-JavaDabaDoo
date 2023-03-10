@@ -5,7 +5,58 @@
     <title>Title</title>
 </head>
 <body>
-<span th:text="koko">KOKO!</span>
+<form method="post"
+      th:action="@{/editArticleDone/{id}(id=${id})}"
+      th:object="${formData}">
+    <div>
+        <label for="author">authore</label>
+        <input name="author" th:value="*{author}" type="text" value="author"/>
+        <p th:if="${#fields.hasErrors('author')}"
+           th:text="${#strings.listJoin(#fields.errors('author'), ', ')}"></p>
+    </div>
+
+    <div>
+        <label for="title">title</label>
+        <input id="title" name="title" th:value="*{title}"
+               type="text">
+        <p th:if="${#fields.hasErrors('title')}"
+           th:text="${#strings.listJoin(#fields.errors('title'), ', ')}"></p>
+    </div>
+
+    <div>
+        <label for="language">language</label><br>
+        <div th:each="lan : ${T(com.infoshareacademy.javadabadoo.model.Language).values()}">
+            <div class="custom-control custom-radio custom-control-inline">
+                <input class="custom-control-input" th:field="*{language}" th:value="${lan}" type="radio">
+                <label class="custom-control-label" th:for="${#ids.prev('language')}" th:text="${lan}">lan</label>
+            </div>
+        </div>
+        <p th:if="${#fields.hasErrors('language')}"
+           th:text="${#strings.listJoin(#fields.errors('language'), ', ')}"></p>
+    </div>
+
+    <div>
+        <label for="subject">subject</label>
+        <input id="subject" name="subject" th:value="*{subject}"
+               type="text">
+        <p th:if="${#fields.hasErrors('subject')}"
+           th:text="${#strings.listJoin(#fields.errors('subject'), ', ')}"></p>
+    </div>
+
+    <div>
+        <label for="source">source</label>
+        <input id="source" name="source" th:value="*{source}"
+               type="text">
+        <p th:if="${#fields.hasErrors('source')}"
+           th:text="${#strings.listJoin(#fields.errors('source'), ', ')}"></p>
+    </div>
+
+    <button type="submit">MODIFY</button>
+</form>
+<br>
+<hr>
+<br>
+<a href="../items"> Go Back </a>
 
 </body>
 </html>
