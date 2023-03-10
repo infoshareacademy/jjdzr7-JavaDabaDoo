@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="post"
+      th:action="@{/newAudioBook}"
+      th:object="${formData}">
+    <div>
+        <label for="author">authore</label>
+        <input id="author" th:field="*{author}"
+               type="text">
+        <p th:if="${#fields.hasErrors('author')}"
+           th:text="${#strings.listJoin(#fields.errors('author'), ', ')}"></p>
+    </div>
+
+    <div>
+        <label for="title">title</label>
+        <input id="title" th:field="*{title}"
+               type="text">
+        <p th:if="${#fields.hasErrors('title')}"
+           th:text="${#strings.listJoin(#fields.errors('title'), ', ')}"></p>
+    </div>
+
+    <div>
+        <label for="language">language</label><br>
+        <div th:each="lan : ${T(com.infoshareacademy.javadabadoo.model.Language).values()}">
+            <div class="custom-control custom-radio custom-control-inline">
+                <input class="custom-control-input" th:field="*{language}" th:value="${lan}" type="radio">
+                <label class="custom-control-label" th:for="${#ids.prev('language')}" th:text="${lan}">lan</label>
+            </div>
+        </div>
+        <p th:if="${#fields.hasErrors('language')}"
+           th:text="${#strings.listJoin(#fields.errors('language'), ', ')}"></p>
+    </div>
+
+    <button type="submit">Create</button>
+</form>
+<br>
+<hr>
+<br>
+<a href="../items"> Go Back </a>
+</body>
+</html>

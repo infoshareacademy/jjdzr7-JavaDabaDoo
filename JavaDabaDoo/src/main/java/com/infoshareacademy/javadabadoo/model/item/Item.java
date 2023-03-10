@@ -3,25 +3,39 @@ package com.infoshareacademy.javadabadoo.model.item;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.infoshareacademy.javadabadoo.model.Language;
 import com.infoshareacademy.javadabadoo.model.rating.Rating;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+
 @Entity
 @Inheritance
 public class Item {
-
+    @Setter
+    @Getter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @Setter
+    @Getter
     private String title;
+    @Setter
+    @Getter
     private String author;
+    @Setter
+    @Getter
     private Language language;
+    @Setter
+    @Getter
     @OneToMany
     @JoinColumn(name = "item_id")
     private List<Rating> scores = new ArrayList<>();
+    @Setter
+    @Getter
     private LocalDateTime dateOfAdd;
 
     public Item() {
@@ -36,53 +50,6 @@ public class Item {
         this.scores = new ArrayList<>();
     }
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-
-    public Language getLanguage() {
-        return language;
-    }
-
-    public void setLanguage(Language language) {
-        this.language = language;
-    }
-
-    public List<Rating> getScores() {
-        return scores;
-    }
-
-    public void setScores(List<Rating> scores) {
-        this.scores = scores;
-    }
-
-    public LocalDateTime getDateOfAdd() {
-        return dateOfAdd;
-    }
-
-    public void setDateOfAdd(LocalDateTime dateOfAdd) {
-        this.dateOfAdd = dateOfAdd;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -102,5 +69,6 @@ public class Item {
     public String toString() {
         return id + "; " + title + "; " + author + "; " + language + "; " + scores + "; " + dateOfAdd;
     }
+
 
 }
