@@ -1,4 +1,4 @@
-package com.infoshareacademy.javadabadoo.model.user;
+package com.infoshareacademy.javadabadoo.model.user.dto;
 
 import java.util.Set;
 
