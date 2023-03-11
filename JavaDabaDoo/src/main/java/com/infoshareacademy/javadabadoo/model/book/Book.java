@@ -1,16 +1,21 @@
 package com.infoshareacademy.javadabadoo.model.book;
 
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.infoshareacademy.javadabadoo.model.item.Item;
 import com.infoshareacademy.javadabadoo.model.Language;
+import com.infoshareacademy.javadabadoo.model.item.Item;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.Entity;
 import java.util.Objects;
 
 @Entity
 public class Book extends Item {
-
+    @Setter
+    @Getter
     private String isbn;
+    @Setter
+    @Getter
     private String category;
 
 
@@ -22,23 +27,6 @@ public class Book extends Item {
 
     public Book() {
 
-    }
-
-
-    public String getIsbn() {
-        return isbn;
-    }
-
-    public void setIsbn(String isbn) {
-        this.isbn = isbn;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
     }
 
     @Override
@@ -59,5 +47,7 @@ public class Book extends Item {
     public String toString() {
         return super.toString() + "; " + isbn + "; " + category;
     }
+
+
 }
 
