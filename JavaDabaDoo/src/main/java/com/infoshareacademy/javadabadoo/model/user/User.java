@@ -9,18 +9,20 @@ import java.util.*;
 @Entity
 @Table(name = "application_user")
 public class User {
+    @OneToMany
+    @JoinColumn(name = "user_id")
+    public List<Item> borrowlist = new ArrayList<>();
+    @OneToMany
+    @JoinColumn(name = "user_id")
+    public List<Item> history = new ArrayList<>();
+    ;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @OneToMany
-    @JoinColumn(name = "user_id")
-    public List<Item> borrowlist = new ArrayList<>();;
-    @OneToMany
-    @JoinColumn(name = "user_id")
-    public List<Item> history = new ArrayList<>();;
+    ;
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
-            name = "user_roles",
+            name = "user_role",
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id")
     )
@@ -42,12 +44,15 @@ public class User {
     public User() {
 
     }
+
     public Set<UserRole> getRoles() {
         return roles;
     }
+
     public void setRoles(Set<UserRole> roles) {
         this.roles = roles;
     }
+
     public String getPassword() {
         return password;
     }

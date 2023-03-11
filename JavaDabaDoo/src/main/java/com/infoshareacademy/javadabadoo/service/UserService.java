@@ -7,6 +7,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashSet;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
@@ -38,6 +39,7 @@ public class UserService {
         user.setFirstName(registration.getFirstName());
         user.setLastName(registration.getLastName());
         user.setEmail(registration.getEmail());
+        user.setRoles(new HashSet<UserRole>());
         String passwordHash = passwordEncoder.encode(registration.getPassword());
         user.setPassword(passwordHash);
         Optional<UserRole> userRole = userRoleRepository.findByName(USER_ROLE);
