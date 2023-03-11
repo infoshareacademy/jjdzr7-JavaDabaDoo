@@ -2,29 +2,20 @@ package com.infoshareacademy.javadabadoo.model.user;
 
 
 import com.infoshareacademy.javadabadoo.model.item.Item;
-import lombok.Getter;
-import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.*;
 
 @Entity
+@Table(name = "application_user")
 public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long userId;
     @OneToMany
     @JoinColumn(name = "user_id")
-    @Setter
-    @Getter
     public List<Item> borrowlist = new ArrayList<>();
     @OneToMany
     @JoinColumn(name = "user_id")
-    @Setter
-    @Getter
     public List<Item> history = new ArrayList<>();
-    @Setter
-    @Getter
+    ;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -35,19 +26,11 @@ public class User {
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id")
     )
-    @Setter
-    @Getter
     private Set<UserRole> roles = new HashSet<>();
 
     private String firstName;
-    @Setter
-    @Getter
     private String lastName;
-    @Setter
-    @Getter
     private String email;
-    @Setter
-    @Getter
     private String password;
 
     public User(int userId, String firstName, String lastName, String email, String password) {
@@ -60,6 +43,70 @@ public class User {
 
     public User() {
 
+    }
+
+    public Set<UserRole> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<UserRole> roles) {
+        this.roles = roles;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public long getUserId() {
+        return id;
+    }
+
+    public void setUserId(long userId) {
+        this.id = userId;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public List<Item> getBorrowlist() {
+        return borrowlist;
+    }
+
+    public void setBorrowlist(List<Item> borrowlist) {
+        this.borrowlist = borrowlist;
+    }
+
+    public List<Item> getHistory() {
+        return history;
+    }
+
+    public void setHistory(List<Item> history) {
+        this.history = history;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     @Override
@@ -81,24 +128,9 @@ public class User {
                 "userId=" + id +
                 ", borrowlist=" + borrowlist +
                 ", history=" + history +
-                ", userId=" + userId +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
                 '}';
     }
-}
-
-//    public void borrowItem(Integer itemId) {
-//        borrowlist.add(itemId);
-//    }
-
-//    public void returnItem(Integer itemId) {
-//        if (borrowlist.contains(itemId)) {
-//            borrowlist.remove(itemId);
-//            history.add(itemId);
-//        } else {
-//            System.out.println("Brak publikacji");
-//        }
-//    }
 }
