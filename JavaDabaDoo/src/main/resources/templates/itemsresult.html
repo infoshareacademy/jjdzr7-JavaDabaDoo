@@ -6,89 +6,146 @@
 
 </head>
 <body>
-<table>
-    <thead>
-    <tr>
-        <th>ID</th>
-        <th>author</th>
-        <th>title</th>
-        <th>language</th>
-        <th>category</th>
-        <th>isbny</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="book: ${books}">
+<div th:fragment="Allitems">
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>author</th>
+            <th>title</th>
+            <th>language</th>
+            <th>category</th>
+            <th>isbny</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="book: ${books}">
 
-        <td th:text="${book.id}"/>
-        <td th:text="${book.author}"/>
-        <td th:text="${book.title}"/>
-        <td th:text="${book.language}"/>
-        <td th:text="${book.category}"/>
-        <td th:text="${book.isbn}"/>
-        <td><a th:href="@{../item/{id}(id=${book.id})}">Go to</a></td>
+            <td th:text="${book.id}"/>
+            <td th:text="${book.author}"/>
+            <td th:text="${book.title}"/>
+            <td th:text="${book.language}"/>
+            <td th:text="${book.category}"/>
+            <td th:text="${book.isbn}"/>
+            <td><a th:href="@{../item/{id}(id=${book.id})}">Go to</a></td>
 
-    </tr>
-    </tbody>
-</table>
-<br>
-<hr>
-<table>
-    <thead>
-    <tr>
-        <th>ID</th>
-        <th>author</th>
-        <th>title</th>
-        <th>language</th>
-        <th>lenght</th>
-        <th>Lector</th>
-        <th>Format</th>
-    </thead>
-    <tbody>
-    <tr th:each="audiobook: ${audiobooks}">
+        </tr>
+        </tbody>
+    </table>
+    <br>
+    <hr>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>author</th>
+            <th>title</th>
+            <th>language</th>
+            <th>lenght</th>
+            <th>Lector</th>
+            <th>Format</th>
+        </thead>
+        <tbody>
+        <tr th:each="audiobook: ${audiobooks}">
 
-        <td th:text="${audiobook.id}"/>
-        <td th:text="${audiobook.author}"/>
-        <td th:text="${audiobook.title}"/>
-        <td th:text="${audiobook.language}"/>
-        <td th:text="${audiobook.length}"/>
-        <td th:text="${audiobook.lector}"/>
-        <td th:text="${audiobook.format}"/>
-        <td><a th:href="@{../item/{id}(id=${audiobook.id})}">Go to</a></td>
-    </tr>
-    <br/>
-    </tbody>
-</table>
-<hr>
-<table>
-    <thead>
-    <tr>
-        <th>ID</th>
-        <th>author</th>
-        <th>title</th>
-        <th>language</th>
-        <th>subject</th>
-        <th>source</th>
-    </thead>
-    <tbody>
-    <tr th:each="article: ${articles}">
-        <a href="item/${article.id}">
-            <td th:text="${article.id}"/>
-            <td th:text="${article.author}"/>
-            <td th:text="${article.title}"/>
-            <td th:text="${article.language}"/>
-            <td th:text="${article.subject}"/>
-            <td th:text="${article.source}"/>
-            <td><a th:href="@{../item/{id}(id=${article.id})}">Go to</a></td>
-        </a>
-    </tr>
-    <br/>
-    </tbody>
-</table>
-
+            <td th:text="${audiobook.id}"/>
+            <td th:text="${audiobook.author}"/>
+            <td th:text="${audiobook.title}"/>
+            <td th:text="${audiobook.language}"/>
+            <td th:text="${audiobook.length}"/>
+            <td th:text="${audiobook.lector}"/>
+            <td th:text="${audiobook.format}"/>
+            <td><a th:href="@{../item/{id}(id=${audiobook.id})}">Go to</a></td>
+        </tr>
+        <br/>
+        </tbody>
+    </table>
+    <hr>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>author</th>
+            <th>title</th>
+            <th>language</th>
+            <th>subject</th>
+            <th>source</th>
+        </thead>
+        <tbody>
+        <tr th:each="article: ${articles}">
+            <a href="item/${article.id}">
+                <td th:text="${article.id}"/>
+                <td th:text="${article.author}"/>
+                <td th:text="${article.title}"/>
+                <td th:text="${article.language}"/>
+                <td th:text="${article.subject}"/>
+                <td th:text="${article.source}"/>
+                <td><a th:href="@{../item/{id}(id=${article.id})}">Go to</a></td>
+            </a>
+        </tr>
+        <br/>
+        </tbody>
+    </table>
+</div>
 <hr>
 
 <a href="../newItem"> New </a>
+
+
+</div>
+<!-- End of Main Content -->
+
+<!-- Footer -->
+<footer class="sticky-footer bg-white">
+    <div class="container my-auto">
+        <div class="copyright text-center my-auto">
+            <span>Copyright &copy; Your Website 2019</span>
+        </div>
+    </div>
+</footer>
+<!-- End of Footer -->
+
+</div>
+<!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+
+<!-- Logout Modal-->
+<div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="logoutModal" role="dialog"
+     tabindex="-1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-dismiss="modal" type="button">Cancel</button>
+                <a class="btn btn-primary" href="login.html">Logout</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap core JavaScript-->
+<script src="../vendor/jquery/jquery.min.js"></script>
+<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<!-- Custom scripts for all pages-->
+<script src="../js/sb-admin-2.min.js"></script>
+
 
 </body>
 </html>
