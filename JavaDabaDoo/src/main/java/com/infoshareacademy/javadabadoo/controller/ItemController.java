@@ -8,6 +8,11 @@ import com.infoshareacademy.javadabadoo.model.book.Book;
 import com.infoshareacademy.javadabadoo.model.book.BookRepository;
 import com.infoshareacademy.javadabadoo.model.item.Item;
 import com.infoshareacademy.javadabadoo.model.item.ItemRepository;
+import com.infoshareacademy.javadabadoo.model.user.UserRepository;
+import com.infoshareacademy.javadabadoo.model.user.UserRole;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -24,12 +29,35 @@ public class ItemController {
     private final ArticleRepository articleRepository;
     private final AudioBookRepository audiobookRepository;
 
-    ItemController(ItemRepository itemRepository, BookRepository bookRepository, AudioBookRepository audiobookRepository, ArticleRepository articleRepository) {
+    private final UserRepository userRepository;
+
+    ItemController(ItemRepository itemRepository, BookRepository bookRepository, AudioBookRepository audiobookRepository, ArticleRepository articleRepository, UserRepository userRepository) {
         this.itemRepository = itemRepository;
         this.bookRepository = bookRepository;
         this.articleRepository = articleRepository;
         this.audiobookRepository = audiobookRepository;
+        this.userRepository = userRepository;
     }
+
+
+    boolean isUserAdmin() {
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (!(authentication instanceof AnonymousAuthenticationToken)) {
+            String currentUserName = authentication.getName();
+            var values = userRepository.findByEmail(currentUserName).get().getRoles();
+
+            for (UserRole value :
+                    values) {
+
+                if (value.getName().equals("ADMIN")) return true;
+
+            }
+
+        }
+        return false;
+    }
+
 
     @RequestMapping("/items")
     String all(Model model) {
@@ -45,6 +73,7 @@ public class ItemController {
         Optional<Article> article = articleRepository.findById(id);
         Optional<Book> book = bookRepository.findById(id);
         Optional<AudioBook> audiobook = audiobookRepository.findById(id);
+
 
         Item item = null;
         if (audiobook.isPresent()) {
@@ -69,6 +98,9 @@ public class ItemController {
 
     @GetMapping("/newArticle")
     public String showCreateArticle(Model model) {
+        if (!isUserAdmin()) {
+            return "error";
+        }
         model.addAttribute("formData", new Article());
         return "newArticle";
     }
@@ -77,6 +109,9 @@ public class ItemController {
     public String doCreateArticle(@ModelAttribute("formData") Article formData,
                                   BindingResult bindingResult,
                                   Model model) {
+        if (!isUserAdmin()) {
+            return "error";
+        }
         if (bindingResult.hasErrors()) {
             return "newArticle";
         }
@@ -86,7 +121,9 @@ public class ItemController {
 
     @GetMapping("/eArticle/{id}")
     String editArticle(@PathVariable Long id, Model model) {
-
+        if (!isUserAdmin()) {
+            return "error";
+        }
         var article = articleRepository.findById(id)
                 .map(item -> {
                     model.addAttribute("formData", item);
@@ -96,7 +133,7 @@ public class ItemController {
         if (article.isPresent()) {
             return "redirect:/editArticle/" + id;
         }
-        return "redirect:/items";
+        return "redirect:/dashboard";
 
     }
 
@@ -104,7 +141,9 @@ public class ItemController {
     String editArticle(@PathVariable Long id, @ModelAttribute("formData") Article formData,
                        BindingResult bindingResult,
                        Model model) {
-
+        if (!isUserAdmin()) {
+            return "error";
+        }
         if (bindingResult.hasErrors()) {
             return "editArticle";
         }
@@ -122,16 +161,20 @@ public class ItemController {
     String editArticle2(@PathVariable Long id, @ModelAttribute("formData") Article formData,
                         BindingResult bindingResult,
                         Model model) {
-
+        if (!isUserAdmin()) {
+            return "error";
+        }
         articleRepository.save(formData);
 
-        return "redirect:/items";
+        return "redirect:/dashboard";
     }
 
 
     @GetMapping("/eBook/{id}")
     String editBook(@PathVariable Long id, Model model) {
-
+        if (!isUserAdmin()) {
+            return "error";
+        }
         var article = bookRepository.findById(id)
                 .map(item -> {
                     model.addAttribute("formData", item);
@@ -141,7 +184,7 @@ public class ItemController {
         if (article.isPresent()) {
             return "redirect:/editBook/" + id;
         }
-        return "redirect:/items";
+        return "redirect:/dashboard";
 
     }
 
@@ -149,7 +192,9 @@ public class ItemController {
     String editBook(@PathVariable Long id, @ModelAttribute("formData") Book formData,
                     BindingResult bindingResult,
                     Model model) {
-
+        if (!isUserAdmin()) {
+            return "error";
+        }
         if (bindingResult.hasErrors()) {
             return "editBook";
         }
@@ -168,14 +213,19 @@ public class ItemController {
     String editBook2(@PathVariable Long id, @ModelAttribute("formData") Book formData,
                      BindingResult bindingResult,
                      Model model) {
-
+        if (!isUserAdmin()) {
+            return "error";
+        }
         bookRepository.save(formData);
 
-        return "redirect:/items";
+        return "redirect:/dashboard";
     }
 
     @GetMapping("/newBook")
     public String showCreateBookForm(Model model) {
+        if (!isUserAdmin()) {
+            return "error";
+        }
         model.addAttribute("formData", new Book());
         return "newBook";
     }
@@ -184,6 +234,9 @@ public class ItemController {
     public String doCreateBook(@ModelAttribute("formData") Book formData,
                                BindingResult bindingResult,
                                Model model) {
+        if (!isUserAdmin()) {
+            return "error";
+        }
         if (bindingResult.hasErrors()) {
             return "newBook";
         }
@@ -194,7 +247,9 @@ public class ItemController {
 
     @GetMapping("/eAudioBook/{id}")
     String editAudioBook(@PathVariable Long id, Model model) {
-
+        if (!isUserAdmin()) {
+            return "error";
+        }
         var audiobook = audiobookRepository.findById(id)
                 .map(item -> {
                     model.addAttribute("formData", item);
@@ -204,7 +259,7 @@ public class ItemController {
         if (audiobook.isPresent()) {
             return "redirect:/editAudioBook/" + id;
         }
-        return "redirect:/items";
+        return "redirect:/dashboard";
 
     }
 
@@ -212,7 +267,9 @@ public class ItemController {
     String editArticle(@PathVariable Long id, @ModelAttribute("formData") AudioBook formData,
                        BindingResult bindingResult,
                        Model model) {
-
+        if (!isUserAdmin()) {
+            return "error";
+        }
         if (bindingResult.hasErrors()) {
             return "editAudioBook";
         }
@@ -231,14 +288,19 @@ public class ItemController {
     String editArticle2(@PathVariable Long id, @ModelAttribute("formData") AudioBook formData,
                         BindingResult bindingResult,
                         Model model) {
-
+        if (!isUserAdmin()) {
+            return "error";
+        }
         audiobookRepository.save(formData);
 
-        return "redirect:/items";
+        return "redirect:/dashboard";
     }
 
     @GetMapping("/newAudioBook")
     public String showCreateAudioBookForm(Model model) {
+        if (!isUserAdmin()) {
+            return "error";
+        }
         model.addAttribute("formData", new AudioBook());
         return "newAudioBook";
     }
@@ -247,6 +309,10 @@ public class ItemController {
     public String doCreateAudioBook(@ModelAttribute("formData") AudioBook formData,
                                     BindingResult bindingResult,
                                     Model model) {
+        if (!isUserAdmin()) {
+            return "error";
+        }
+
         if (bindingResult.hasErrors()) {
             return "newAudioBook";
         }
@@ -257,7 +323,9 @@ public class ItemController {
 
     @RequestMapping("/deleteItem/{id}")
     String deleteItem(@PathVariable Long id, Model model) {
-
+        if (!isUserAdmin()) {
+            return "error";
+        }
 
         Optional<Article> article = articleRepository.findById(id);
         Optional<Book> book = bookRepository.findById(id);
